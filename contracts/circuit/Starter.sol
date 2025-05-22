@@ -1,12 +1,12 @@
-pragma solidity ^0.8.29;
+pragma solidity ^0.8.28;
 
-import { UltraVerifier } from "./ultra-verifier/plonk_vk.sol";
+import { HonkVerifier } from "./ultra-verifier/plonk_vk.sol";
 //import "../circuits/target/contract.sol";
 
 contract Starter {
-    UltraVerifier public verifier;
+    HonkVerifier public verifier;
 
-    constructor(UltraVerifier _verifier) {
+    constructor(HonkVerifier _verifier) {
         verifier = _verifier;
     }
 
