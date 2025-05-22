@@ -22,8 +22,8 @@ mod tests {
         let revealed_data_nullifier = main(
         //let revealed_data: RevealedData = main(
             x,
-            y,
-            nullifier
+            y
+            //nullifier
         );
 
         // @dev - Check the revealed data, which is the publicInput
