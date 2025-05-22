@@ -9,16 +9,15 @@ fn main(
     x: Field, 
     y: pub Field,
     nullifier: Field
-) -> pub Field {
+) -> pub RevealedData {
     assert(x == y, "x and y must be equal");
 
     let expected_nullifier: Field = pedersen_hash([x, y]);
     assert(expected_nullifier == nullifier, "Nullifier mismatch");
 
     // @dev - Return
-    let revealed_data: RevealedData = RevealedData {
+    let revealed_data = RevealedData {
         nullifier: nullifier
     };
-
-    revealed_data.nullifier
+    revealed_data
 }

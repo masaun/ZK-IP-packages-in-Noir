@@ -19,13 +19,14 @@ mod tests {
         println(f"nullifier: {nullifier}");
 
         // @dev - Generate a ZKP and publicInput as the "revealed_data"
-        let revealed_data_nullifier = main(
+        let revealed_data: RevealedData = main(
             x,
             y,
             nullifier
         );
 
         // @dev - Check the revealed data, which is the publicInput
+        let revealed_data_nullifier = revealed_data.nullifier;
         println(f"revealed_data.nullifier: {revealed_data_nullifier}");
     }
 
