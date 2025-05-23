@@ -1,6 +1,7 @@
 mod tests;      // tests/mod.nr
 mod data_types; // data_types.nr
 //mod utils; 
+mod zk_kit;
 
 use std::hash::pedersen_hash;
 use data_types::{ RevealedData };
