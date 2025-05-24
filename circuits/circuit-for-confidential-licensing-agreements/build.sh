@@ -55,10 +55,10 @@ bb write_solidity_verifier -k ./target/vk/confidential_licensing_agreement_vk.bi
 #bb write_solidity_verifier -k ./target/vk -o ./target/Verifier.sol
 #bb contract
 
-echo "Copy a Solidity Verifier contract-generated (Verifier.sol) into the ./contracts/circuit/ultra-verifier directory"
-cp ./target/Verifier.sol ../contracts/circuit/ultra-verifier
+echo "Copy a Solidity Verifier contract-generated (Verifier.sol) into the ./contracts/circuits/circuit-for-confidential-licensing-agreements/honk-verifier directory"
+cp ./target/Verifier.sol ../../contracts/circuits/circuit-for-confidential-licensing-agreements/honk-verifier
 
-echo "Rename the Verifier.sol with the plonk_vk.sol in the ./contracts/circuit/ultra-verifier directory"
-mv ../contracts/circuit/ultra-verifier/Verifier.sol ../contracts/circuit/ultra-verifier/plonk_vk.sol
+echo "Rename the Verifier.sol with the plonk_vk.sol in the ./contracts/circuits/circuit-for-confidential-licensing-agreements/honk-verifier directory"
+mv ../../contracts/circuits/circuit-for-confidential-licensing-agreements/honk-verifier/Verifier.sol ../../contracts/circuits/circuit-for-confidential-licensing-agreements/honk-verifier/plonk_vk.sol
 
 echo "Done"
