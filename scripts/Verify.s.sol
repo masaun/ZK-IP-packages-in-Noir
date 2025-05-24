@@ -21,10 +21,10 @@ contract VerifyScript is Script {
         verifier = new HonkVerifier();
         starter = new Starter(verifier);
 
-        bytes memory proof_w_inputs = vm.readFileBinary("./circuits/target/with_foundry_proof.bin");
+        bytes memory proof_w_inputs = vm.readFileBinary("./circuits/target/confidential_licensing_agreement_proof.bin");
         bytes memory proofBytes = ProofConverter.sliceAfter64Bytes(proof_w_inputs);    /// @dev - In case of that there are 2 public inputs (bytes32 * 2 = 64 bytes), the proof file includes 96 bytes of the public inputs at the beginning. Hence it should be removed by using this function.
         
-        //string memory proof = vm.readLine("./circuits/target/with_foundry_proof.bin");
+        //string memory proof = vm.readLine("./circuits/target/confidential_licensing_agreement_proof.bin");
         //bytes memory proofBytes = vm.parseBytes(proof);
 
         bytes32[] memory correctPublicInputs = new bytes32[](2);
