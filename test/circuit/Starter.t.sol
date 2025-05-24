@@ -38,7 +38,7 @@ contract StarterTest is Test {
                   .withInput("nullifier", bytes32(uint256(0x0d550adf957548876e708338ed4e94a657a3ae4a99538d716faf422679df79d8)));
                   //.withInput("return", bytes32(uint256(0x0d550adf957548876e708338ed4e94a657a3ae4a99538d716faf422679df79d8)));
 
-        /// @dev - [Error]: Failed to open data file for writing: "./target/test_verifyProof.proof/proof"
+        /// @dev - [Error]: Failed to open data file for writing: "./target/test_wrongProof.proof/proof"
         (bytes32[] memory publicInputs, bytes memory proof) = noirHelper.generateProof("test_wrongProof", 2);
 
         /// @dev - Create a fake public input, which should fail because the public input is wrong
