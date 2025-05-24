@@ -1,9 +1,9 @@
 mod test_inputs; // test_inputs.nr
 
 mod tests {
-    use crate::main;                   // src/main.nr
-    use crate::data_types::{ RevealedData };  // src/data_types.nr
-    //use crate::utils;             // src/utils.nr -> utils/converter_field_to_bytes.nr -> convert_field_bytes32_to_uint8_array()
+    use crate::main;
+    use crate::data_types::{ RevealedData };
+    //use crate::utils;
 
     use std::hash::pedersen_hash;
 
@@ -19,15 +19,14 @@ mod tests {
         println(f"nullifier: {nullifier}");
 
         // @dev - Generate a ZKP and publicInput as the "revealed_data"
-        let revealed_data_nullifier = main(
-        //let revealed_data: RevealedData = main(
+        let revealed_data: RevealedData = main(
             x,
-            y
-            //nullifier
+            y,
+            nullifier
         );
 
         // @dev - Check the revealed data, which is the publicInput
-        //let revealed_data_nullifier = revealed_data.nullifier;
+        let revealed_data_nullifier = revealed_data.nullifier;
         println(f"revealed_data.nullifier: {revealed_data_nullifier}");
     }
 
