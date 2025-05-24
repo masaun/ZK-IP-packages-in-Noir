@@ -9,7 +9,7 @@ mod tests {
 
     #[test]
     fn test_hospital_bill_proof_verifier() {
-        let jurisdiction: Vec<u8> = Vec::from_slice([1, 2]); // Example jurisdiction (could be a country code)
+        let jurisdiction: BoundedVec<u8, 2> = BoundedVec::from([1, 2]); // Example jurisdiction (could be a country code - i.e. US, UK, etc.)
         let duration: Field = 2629743;  // 1 month in seconds
         println(f"jurisdiction: {jurisdiction}");
         println(f"duration: {duration}");

@@ -7,8 +7,8 @@ use std::hash::pedersen_hash;
 use data_types::{ RevealedData };
 
 fn main(
-    jurisdiction: Vec<u8>,  // The jurisdiction of the agreement (Country code - i.e. US, UK, etc.)
-    duration: Field,        // The duration of the agreement (i.e. 3 month in seconds)
+    jurisdiction: BoundedVec<u8, 2>,  // The jurisdiction of the agreement (Country code - i.e. US, UK, etc.)
+    duration: Field,                  // The duration of the agreement (i.e. 3 month in seconds)
     nullifier: Field
 ) -> pub RevealedData {
     //assert(x == y, "x and y must be equal");
