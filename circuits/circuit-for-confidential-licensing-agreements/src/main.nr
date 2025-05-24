@@ -7,13 +7,13 @@ use std::hash::pedersen_hash;
 use data_types::{ RevealedData };
 
 fn main(
-    x: Field, 
-    y: pub Field,
+    jurisdiction: Vec<u8>,  // The jurisdiction of the agreement (Country code - i.e. US, UK, etc.)
+    duration: Field,        // The duration of the agreement (i.e. 3 month in seconds)
     nullifier: Field
 ) -> pub RevealedData {
-    assert(x == y, "x and y must be equal");
+    //assert(x == y, "x and y must be equal");
 
-    let expected_nullifier: Field = pedersen_hash([x, y]);
+    let expected_nullifier: Field = pedersen_hash([duration]);
     println(f"expected_nullifier: {expected_nullifier}");
     println(f"nullifier: {nullifier}");
     assert(expected_nullifier == nullifier, "Nullifier mismatch");

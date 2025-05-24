@@ -9,19 +9,19 @@ mod tests {
 
     #[test]
     fn test_hospital_bill_proof_verifier() {
-        let x: Field = 3;
-        let y: Field = 3;
-        println(f"x: {x}");
-        println(f"y: {y}");
+        let jurisdiction: Vec<u8> = Vec::from_slice([1, 2]); // Example jurisdiction (could be a country code)
+        let duration: Field = 2629743;  // 1 month in seconds
+        println(f"jurisdiction: {jurisdiction}");
+        println(f"duration: {duration}");
 
         // @dev - Generate the nullifier
-        let nullifier = pedersen_hash([x, y]);
+        let nullifier = pedersen_hash([duration]);
         println(f"nullifier: {nullifier}");
 
         // @dev - Generate a ZKP and publicInput as the "revealed_data"
         let revealed_data: RevealedData = main(
-            x,
-            y,
+            jurisdiction,
+            duration,
             nullifier
         );
 
