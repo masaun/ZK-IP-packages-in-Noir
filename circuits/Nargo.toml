@@ -3,6 +3,7 @@ name="with_foundry"
 type="bin"
 authors = ["masaun"]
 compiler_version = ">=0.31.0"
+version = "0.0.1"  # This will be used in the build.sh in the form of the $VERSION
 
 [dependencies]
 # ZK-kit

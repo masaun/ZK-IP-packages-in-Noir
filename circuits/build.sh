@@ -2,9 +2,16 @@
 # @notice - This script is new version of Noir's script. Please see more details from Noir's official documentation #
 #####################################################################################################################
 
+echo "Clean previous build (./target directory)..."
+rm -rf target
+
 echo "Load the environment variables from the .env file..."
 source ../.env
 #. ./.env
+
+# Extract version from Nargo.toml
+VERSION=$(grep '^version = ' Nargo.toml | cut -d '"' -f 2)
+echo "Circuit version: $VERSION"
 
 echo "Compiling circuit..."
 nargo compile

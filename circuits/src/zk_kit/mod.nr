@@ -14,8 +14,8 @@ pub mod zk_kit {
     global MAX_DEPTH: u32 = 32; // Max depth of the Merkle tree
 
     /**
-    * @notice - Compute a Binary Merkle Root
-    */
+     * @notice - Compute a Binary Merkle Root
+     */
     pub fn compute_binary_merkle_root(
         identity_commitment: Field,
         merkle_proof_length: u32, 
@@ -29,8 +29,8 @@ pub mod zk_kit {
 
 
     /**
-    * @notice - Add a new entry to (existing) Merkle tree + Prove it is in the tree
-    */
+     * @notice - Add a new entry to (existing) Merkle tree + Prove it is in the tree
+     */
     pub fn hasher(leaves: [Field; 2]) -> Field {
         hash(leaves, 2)
     }
@@ -53,8 +53,8 @@ pub mod zk_kit {
 
 
     /**
-    * @notice - Create a new public key /or shared key
-    */
+     * @notice - Create a new public key /or shared key
+     */
     pub fn create_new_public_key(private_key: Field) -> Point {
         let ecdh = BJJ::new(private_key);
         let public_key = ecdh.derive_public_key();
