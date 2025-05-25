@@ -18,12 +18,9 @@ fn main(
     for i in 0..out_of_jurisdictions_list.len() {
         assert(jurisdiction != out_of_jurisdictions_list[i], "A ginve jurisdiction is out of jurisdiction");
     }
-    
-    //let out_of_jurisdiction: str<2> = "us";  // An example of out of jurisdiction (In this case, "US" is out of jurisdiction)
-    //assert(jurisdiction != out_of_jurisdiction, "Jurisdiction mismatch");
 
-    //let jurisdiction_vec: Vec<u8> = jurisdiction.as_bytes_vec();
-    //println(f"jurisdiction_vec: {jurisdiction_vec}");
+    // @dev - Constraint for the duration
+    assert(duration as u32 > 2628000, "Duration must be greater than 1 mounth (in seconds = 2628000 sec)");
 
     let expected_nullifier: Field = pedersen_hash([duration]);
     println(f"expected_nullifier: {expected_nullifier}");
