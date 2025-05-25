@@ -29,6 +29,7 @@ fn main(
 
     // @dev - Return
     let revealed_data = RevealedData {
+        is_valid_derivative_work: true, // @dev - Whether the derivative work is valid according to the agreement. Only the fact whether or not a given data of derivative work is valid will be revealed. (Does not reveal all collected-data)
         nullifier: nullifier
     };
     revealed_data
