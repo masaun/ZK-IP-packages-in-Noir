@@ -25,6 +25,13 @@ circuits/circuit-for-selective-disclosure-in-derivative-works/Verifier.toml
 circuits/circuit-for-selective-disclosure-in-derivative-works/test_verifyProof.toml
 circuits/circuit-for-selective-disclosure-in-derivative-works/test_wrongProof.toml
 
+# Circuit for Selective Disclosure in Derivative Works
+circuits/circuit-for-ip-protection-for-derivative-works/target/*
+circuits/circuit-for-ip-protection-for-derivative-works/Prover.toml
+circuits/circuit-for-ip-protection-for-derivative-works/Verifier.toml
+circuits/circuit-for-ip-protection-for-derivative-works/test_verifyProof.toml
+circuits/circuit-for-ip-protection-for-derivative-works/test_wrongProof.toml
+
 lib/foundry-noir-helper/*
 
 .DS_Store
