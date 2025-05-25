@@ -9,10 +9,14 @@ mod tests {
 
     #[test]
     fn test_hospital_bill_proof_verifier() {
-        let jurisdiction: BoundedVec<u8, 2> = BoundedVec::from([1, 2]); // Example jurisdiction (could be a country code - i.e. US, UK, etc.)
-        let duration: Field = 2629743;  // 1 month in seconds
+        let jurisdiction: str<2> = "uk";  // An example jurisdiction of the agreement (Country code - i.e. US, UK, etc.)
+        //let jurisdiction: BoundedVec<u8, 2> = BoundedVec::from([1, 2]);
+        let duration: Field = 2629743;    // 1 month in seconds
         println(f"jurisdiction: {jurisdiction}");
         println(f"duration: {duration}");
+
+        // @dev - [TEST]
+        test_output(jurisdiction);
 
         // @dev - Generate the nullifier
         let nullifier = pedersen_hash([duration]);
@@ -30,4 +34,9 @@ mod tests {
         println(f"revealed_data.nullifier: {revealed_data_nullifier}");
     }
 
+    #[test]
+    fn test_output(jurisdiction: str<2>) {
+        let jurisdiction_vec: Vec<u8> = jurisdiction.as_bytes_vec();
+        println(f"jurisdiction_vec: {jurisdiction_vec}"); // [Log]: Vec { slice: &[117, 107] }
+    }
 }
