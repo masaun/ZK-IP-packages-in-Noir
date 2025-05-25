@@ -35,6 +35,28 @@ mod tests {
         println(f"revealed_data.nullifier: {revealed_data_nullifier}");
     }
 
+    #[test(should_fail_with = "A ginve jurisdiction is out of jurisdiction")]
+    fn test_should_fail_with_out_of_jurisdiction() {
+        let jurisdiction: u32 = 1;       // Country code - USA (+1)
+        let duration: Field = 7884000;   // 3 month in seconds
+        println(f"jurisdiction: {jurisdiction}");
+
+        // @dev - Generate the nullifier
+        let nullifier = pedersen_hash([duration]);
+
+        // @dev - Generate a ZKP and publicInput as the "revealed_data"
+        let revealed_data: RevealedData = main(
+            jurisdiction,
+            duration,
+            nullifier
+        );
+    }
+
+
+    //////////////////////////////
+    /// @notice - Test outputs ///
+    //////////////////////////////
+
     #[test]
     fn test_output(jurisdiction: str<2>) {
         let jurisdiction_vec: Vec<u8> = jurisdiction.as_bytes_vec();
