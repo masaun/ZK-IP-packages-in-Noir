@@ -18,6 +18,13 @@ circuits/circuit-for-confidential-licensing-agreements/Verifier.toml
 circuits/circuit-for-confidential-licensing-agreements/test_verifyProof.toml
 circuits/circuit-for-confidential-licensing-agreements/test_wrongProof.toml
 
+# Circuit for Selective Disclosure in Derivative Works
+circuits/circuit-for-selective-disclosure-in-derivative-works/target/*
+circuits/circuit-for-selective-disclosure-in-derivative-works/Prover.toml
+circuits/circuit-for-selective-disclosure-in-derivative-works/Verifier.toml
+circuits/circuit-for-selective-disclosure-in-derivative-works/test_verifyProof.toml
+circuits/circuit-for-selective-disclosure-in-derivative-works/test_wrongProof.toml
+
 lib/foundry-noir-helper/*
 
 .DS_Store
