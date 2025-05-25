@@ -8,7 +8,7 @@ mod tests {
     use std::hash::pedersen_hash;
 
     #[test]
-    fn test_hospital_bill_proof_verifier() {
+    fn test_should_success() {
         let jurisdiction: u32 = 49;         // Country code - Germany (+49)
         //let jurisdiction: str<2> = "uk";  // An example jurisdiction of the agreement (Country code - i.e. US, UK, etc.)
         //let jurisdiction: BoundedVec<u8, 2> = BoundedVec::from([1, 2]);
