@@ -1,4 +1,4 @@
 #return = ""
-x = ""
-y = ""
-nullifier = """
+jurisdiction = 0
+duration = 0
+nullifier = ""
