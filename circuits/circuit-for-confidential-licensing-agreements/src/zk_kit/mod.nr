@@ -40,13 +40,13 @@ pub mod zk_kit {
         mt
     }
 
-    pub fn add_entry_to_paths(mut mt: MerkleTree<Field>, entry: Field, index: Field, paths: [Field; 0]) -> MerkleTree<Field> {
-        // add at index 0
+    pub fn add_entry_to_paths(mut mt: MerkleTree<Field>, entry: Field, index: Field, paths: [Field; 2]) -> MerkleTree<Field> {
+        // add at index 
         mt.add(entry, index, paths);
         mt
     }
 
-    pub fn is_membership(mut mt: MerkleTree<Field>, entry: Field, index: Field, paths: [Field; 0]) {
+    pub fn is_membership(mut mt: MerkleTree<Field>, entry: Field, index: Field, paths: [Field; 2]) {
         // prove it is in the tree (kinda redundant isn't it?)
         mt.membership(entry, index, paths); // @dev - The membership() has no return value.
     }

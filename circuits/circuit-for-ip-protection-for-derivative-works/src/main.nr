@@ -26,10 +26,10 @@ fn main(
     nullifier: Field
 ) -> pub RevealedData {
     // @notice - We do not want to public the following "On-chain terms" and "Off-chain terms" for AI-reporter, which is operated by Story Attestation Providers (i.e. Yakoa, Pex, etc).
-    // @notice - Hence, the actual "On-chain terms" and "Off-chain terms", which is defined in the original aggrement, should be stored here - rather than stored via input parameters.
+    // @notice - Hence, the actual "On-chain terms" and "Off-chain terms", which is defined in the original aggrement, should be stored here (with hard coding) - rather than stored via input parameters.
     // @dev - On-chain terms
     commercial_use: bool = true;  // Whether the agreement allows commercial use of the derivative work
-    expiration: Field = 1700000;    // The expiration date of the agreement (i.e. 2024-01-01 in seconds)
+    expiration: Field = 1700000;  // The expiration date of the agreement (i.e. 2024-01-01 in seconds)
 
     // @dev - Off-chain terms
     territory: BoundedVec<u8, MAX_TERRITORY_LENGTH> = [1, 2, 3];                                // Limit usage of the IP to certain regions and/or countries. By default, the IP can be used globally.
