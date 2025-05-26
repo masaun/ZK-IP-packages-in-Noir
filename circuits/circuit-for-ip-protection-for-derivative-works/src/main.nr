@@ -28,15 +28,15 @@ fn main(
     // @notice - We do not want to public the following "On-chain terms" and "Off-chain terms" for AI-reporter, which is operated by Story Attestation Providers (i.e. Yakoa, Pex, etc).
     // @notice - Hence, the actual "On-chain terms" and "Off-chain terms", which is defined in the original aggrement, should be stored here (with hard coding) - rather than stored via input parameters.
     // @dev - On-chain terms
-    commercial_use: bool = true;  // Whether the agreement allows commercial use of the derivative work
-    expiration: Field = 1700000;  // The expiration date of the agreement (i.e. 2024-01-01 in seconds)
+    let commercial_use: bool = true;     // Whether the agreement allows commercial use of the derivative work
+    let expiration: Field = 1767225600;  // The expiration date of the agreement (i.e. 2026-01-01 in seconds)
 
     // @dev - Off-chain terms
-    territory: BoundedVec<u8, MAX_TERRITORY_LENGTH> = [1, 2, 3];                                // Limit usage of the IP to certain regions and/or countries. By default, the IP can be used globally.
-    channels_of_distribution: BoundedVec<u8, MAX_CHANNELS_OF_DISTRIBUTION_LENGTH> = [1, 2, 3];  // Restrict usage of the IP to certain media formats and use in certain channels of distribution. By default, the IP can be used across all possible channels of distribution. Examples: 'television', 'physical consumer products', 'video games', etc.
-    content_standards: BoundedVec<u8, MAX_CONTENT_STANDARD_LENGTH> = [1, 2, 3];                 // The content standards of the derivative work (i.e. 1: PG, 2: R, 3: X, etc. In this case, the values are just examples)
-    ai_learning_models: bool = false;                                                           // Whether or not some parts of the derivative work used for the AI learning models.
-    cross_platform_use: bool = true;                                                            // Whether or not some parts of the derivative work used cross-platform (i.e. the derivative work can be used on different platforms, such as web, mobile, etc.)
+    let territory: BoundedVec<u8, MAX_TERRITORY_LENGTH> = [1, 2, 3];                                // Limit usage of the IP to certain regions and/or countries. By default, the IP can be used globally.
+    let channels_of_distribution: BoundedVec<u8, MAX_CHANNELS_OF_DISTRIBUTION_LENGTH> = [1, 2, 3];  // Restrict usage of the IP to certain media formats and use in certain channels of distribution. By default, the IP can be used across all possible channels of distribution. Examples: 'television', 'physical consumer products', 'video games', etc.
+    let content_standards: BoundedVec<u8, MAX_CONTENT_STANDARD_LENGTH> = [1, 2, 3];                 // The content standards of the derivative work (i.e. 1: PG, 2: R, 3: X, etc. In this case, the values are just examples)
+    let ai_learning_models: bool = false;                                                           // Whether or not some parts of the derivative work used for the AI learning models.
+    let cross_platform_use: bool = true;                                                            // Whether or not some parts of the derivative work used cross-platform (i.e. the derivative work can be used on different platforms, such as web, mobile, etc.)
 
 
     // @dev - Constraint for the On-chain terms
