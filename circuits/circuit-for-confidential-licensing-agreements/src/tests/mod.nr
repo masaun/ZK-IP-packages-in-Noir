@@ -35,7 +35,7 @@ mod tests {
         println(f"revealed_data.nullifier: {revealed_data_nullifier}");
     }
 
-    #[test(should_fail_with = "A ginve jurisdiction is out of jurisdiction")]
+    #[test(should_fail_with = "A given jurisdiction is out of jurisdiction")]
     fn test_should_fail_with_out_of_jurisdiction() {
         let jurisdiction: u32 = 1;       // Country code - USA (+1)
         let duration: Field = 7884000;   // 3 month in seconds

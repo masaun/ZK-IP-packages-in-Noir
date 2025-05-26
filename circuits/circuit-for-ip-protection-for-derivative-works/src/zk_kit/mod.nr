@@ -3,7 +3,7 @@ pub mod zk_kit {
     use binary_merkle_root::binary_merkle_root;
     use std::hash::poseidon::bn254::hash_2 as poseidon2;
 
-    // For the Binary Merkle Tree
+    // For the Merkle Tree
     use trees::merkle::MerkleTree;
     use std::hash::poseidon2::Poseidon2::hash;
 
@@ -35,20 +35,20 @@ pub mod zk_kit {
         hash(leaves, 2)
     }
 
-    pub fn create_new_merkle_tree(mt: MerkleTree<Field>) -> MerkleTree<Field> {
+    pub fn create_new_merkle_tree() -> MerkleTree<Field> {
         let mut mt = MerkleTree::new(hasher);
         mt
     }
 
-    pub fn add_entry_to_paths(mut mt: MerkleTree<Field>, entry: Field, paths: [Field; 0]) -> MerkleTree<Field> {
-        // add at index 0
-        mt.add(entry, 0, paths);
+    pub fn add_entry_to_paths(mut mt: MerkleTree<Field>, entry: Field, index: Field, paths: [Field; 2]) -> MerkleTree<Field> {
+        // add at index 
+        mt.add(entry, index, paths);
         mt
     }
 
-    pub fn is_membership(mut mt: MerkleTree<Field>, entry: Field, paths: [Field; 0]) {
+    pub fn is_membership(mut mt: MerkleTree<Field>, entry: Field, index: Field, paths: [Field; 2]) {
         // prove it is in the tree (kinda redundant isn't it?)
-        mt.membership(entry, 0, paths); // @dev - The membership() has no return value.
+        mt.membership(entry, index, paths); // @dev - The membership() has no return value.
     }
 
 
