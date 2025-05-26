@@ -14,7 +14,11 @@ global MAX_CONTENT_STANDARD_LENGTH: u32 = 64;
 fn main(
     // @dev - On-chain terms
     commercial_use: bool,          // Whether the agreement allows commercial use of the derivative work
-    expiration: Field,             // The expiration date of the agreement (i.e. 2024-01-01 in seconds)
+    expiration: u32,               // The expiration date of the agreement (i.e. 2024-01-01 in seconds)
+
+    // @dev - AI reported results for "On-chain terms"
+    reported_commercial_use: bool,
+    reported_timestamp_at: u32,
 
     // @dev - Off-chain terms
     territory: BoundedVec<u8, MAX_TERRITORY_LENGTH>,                               // Limit usage of the IP to certain regions and/or countries. By default, the IP can be used globally.
@@ -23,17 +27,27 @@ fn main(
     ai_learning_models: bool,                                                      // Whether or not some parts of the derivative work used for the AI learning models.
     cross_platform_use: bool,                                                      // Whether or not some parts of the derivative work used cross-platform (i.e. the derivative work can be used on different platforms, such as web, mobile, etc.)
     
+    // @dev - AI reported results for "Off-chain terms"
+    reported_territory: BoundedVec<u8, MAX_TERRITORY_LENGTH>,                              
+    reported_channels_of_distribution: BoundedVec<u8, MAX_CHANNELS_OF_DISTRIBUTION_LENGTH>,
+    reported_content_standards: BoundedVec<u8, MAX_CONTENT_STANDARD_LENGTH>,               
+    reported_ai_learning_models: bool,                                           
+    reported_cross_platform_use: bool,
+
     nullifier: Field
 ) -> pub RevealedData {
-    // @dev - Constraint for the jurisdiction(s)
-    let out_of_jurisdictions_list: [u32; 3] = [1, 44, 61]; // An example of out of jurisdictions list (In this example case, "US" (+1), "UK" (+44), "Australia" (61) are out of jurisdiction)
-    for i in 0..out_of_jurisdictions_list.len() {
-        assert(jurisdiction != out_of_jurisdictions_list[i], "A given jurisdiction is out of jurisdiction");
-    }
+    // @dev - Constraint for the On-chain terms
+    assert(commercial_use == reported_commercial_use, "The condition of the commercial use has been violated");
+    assert(expiration >= reported_timestamp_at, "The expiration date has been violated");
 
-    // @dev - Constraint for the duration
-    assert(duration as u32 > 2628000, "Duration must be greater than 1 mounth (in seconds = 2628000 sec)");
+    // @dev - Constraint for the Off-chain terms
+    assert(territory == reported_territory, "The territory has been violated");
+    assert(channels_of_distribution == reported_channels_of_distribution, "The channels of distribution have been violated");
+    assert(content_standards == reported_content_standards, "The content standards have been violated");
+    assert(ai_learning_models == reported_ai_learning_models, "The AI learning models condition has been violated");
+    assert(cross_platform_use == reported_cross_platform_use, "The cross-platform use condition has been violated");
 
+    // @dev - Constraint for the nullifier
     let expected_nullifier: Field = pedersen_hash([duration]);
     println(f"expected_nullifier: {expected_nullifier}");
     println(f"nullifier: {nullifier}");
