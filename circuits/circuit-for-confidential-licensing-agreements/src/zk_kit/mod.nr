@@ -35,7 +35,7 @@ pub mod zk_kit {
         hash(leaves, 2)
     }
 
-    pub fn create_new_merkle_tree(mt: MerkleTree<Field>) -> MerkleTree<Field> {
+    pub fn create_new_merkle_tree() -> MerkleTree<Field> {
         let mut mt = MerkleTree::new(hasher);
         mt
     }
