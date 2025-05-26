@@ -14,7 +14,7 @@ global MAX_CONTENT_STANDARD_LENGTH: u32 = 64;
 fn main(
     // @dev - AI reported results for "On-chain terms"
     reported_commercial_use: bool,
-    reported_timestamp_at: u32,
+    reported_timestamp_at: Field,
     
     // @dev - AI reported results for "Off-chain terms"
     reported_territory: BoundedVec<u8, MAX_TERRITORY_LENGTH>,                              
@@ -29,7 +29,7 @@ fn main(
     // @notice - Hence, the actual "On-chain terms" and "Off-chain terms", which is defined in the original aggrement, should be stored here - rather than stored via input parameters.
     // @dev - On-chain terms
     commercial_use: bool = true;  // Whether the agreement allows commercial use of the derivative work
-    expiration: u32 = 1700000;    // The expiration date of the agreement (i.e. 2024-01-01 in seconds)
+    expiration: Field = 1700000;    // The expiration date of the agreement (i.e. 2024-01-01 in seconds)
 
     // @dev - Off-chain terms
     territory: BoundedVec<u8, MAX_TERRITORY_LENGTH> = [1, 2, 3];                                // Limit usage of the IP to certain regions and/or countries. By default, the IP can be used globally.
@@ -41,7 +41,7 @@ fn main(
 
     // @dev - Constraint for the On-chain terms
     assert(commercial_use == reported_commercial_use, "The condition of the commercial use has been violated");
-    assert(expiration >= reported_timestamp_at, "The expiration date has been violated");
+    assert(expiration as u32 >= reported_timestamp_at as u32, "The expiration date has been violated");
 
     // @dev - Constraint for the Off-chain terms
     assert(territory == reported_territory, "The territory has been violated");
@@ -51,7 +51,7 @@ fn main(
     assert(cross_platform_use == reported_cross_platform_use, "The cross-platform use condition has been violated");
 
     // @dev - Constraint for the nullifier
-    let expected_nullifier: Field = pedersen_hash([duration]);
+    let expected_nullifier: Field = pedersen_hash([reported_timestamp_at]);
     println(f"expected_nullifier: {expected_nullifier}");
     println(f"nullifier: {nullifier}");
     assert(expected_nullifier == nullifier, "Nullifier mismatch");
