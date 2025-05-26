@@ -10,24 +10,25 @@ mod tests {
 
     #[test]
     fn test_should_success() {
-        let empty_reported_territory: BoundedVec<u8, MAX_TERRITORY_LENGTH> = BoundedVec::new();
-        let empty_creported_hannels_of_distribution: BoundedVec<u8, MAX_CHANNELS_OF_DISTRIBUTION_LENGTH> = BoundedVec::new();
-        let empty_reported_content_standards: BoundedVec<u8, MAX_CONTENT_STANDARD_LENGTH> = BoundedVec::new();
-
         // @notice - In this test, we assume that an AI-reporter, which is operated by Story Attestation Providers (i.e. Yakoa, Pex, etc), would report the following "On-chain terms" and "Off-chain terms".
         // @dev - On-chain terms
         let reported_commercial_use: bool = true;     // Whether the agreement allows commercial use of the derivative work
         let reported_timestamp_at: Field = 1767225600;  // The expiration date of the agreement (i.e. 2026-01-01 in seconds)
         println(f"reported_commercial_use: {reported_commercial_use}");
+        println(f"reported_timestamp_at: {reported_timestamp_at}");
 
         // @dev - Off-chain terms
-        let reported_territory: BoundedVec<u8, MAX_TERRITORY_LENGTH> = empty_reported_territory::from_array([1, 2, 3]);                                // Limit usage of the IP to certain regions and/or countries. By default, the IP can be used globally.
-        let reported_channels_of_distribution: BoundedVec<u8, MAX_CHANNELS_OF_DISTRIBUTION_LENGTH> = empty_creported_hannels_of_distribution::from_array([1, 2, 3]);  // Restrict usage of the IP to certain media formats and use in certain channels of distribution. By default, the IP can be used across all possible channels of distribution. Examples: 'television', 'physical consumer products', 'video games', etc.
-        let reported_content_standards: BoundedVec<u8, MAX_CONTENT_STANDARD_LENGTH> = empty_reported_content_standards::array_from([1, 2, 3]);                 // The content standards of the derivative work (i.e. 1: PG, 2: R, 3: X, etc. In this case, the values are just examples)
+        let reported_territory: BoundedVec<u8, MAX_TERRITORY_LENGTH> = BoundedVec::from_array([1, 2, 3]);                                // Limit usage of the IP to certain regions and/or countries. By default, the IP can be used globally.
+        let reported_channels_of_distribution: BoundedVec<u8, MAX_CHANNELS_OF_DISTRIBUTION_LENGTH> = BoundedVec::from_array([1, 2, 3]);  // Restrict usage of the IP to certain media formats and use in certain channels of distribution. By default, the IP can be used across all possible channels of distribution. Examples: 'television', 'physical consumer products', 'video games', etc.
+        let reported_content_standards: BoundedVec<u8, MAX_CONTENT_STANDARD_LENGTH> = BoundedVec::from_array([1, 2, 3]);                 // The content standards of the derivative work (i.e. 1: PG, 2: R, 3: X, etc. In this case, the values are just examples)
         let reported_ai_learning_models: bool = false;                                                           // Whether or not some parts of the derivative work used for the AI learning models.
         let reported_cross_platform_use: bool = true;     
-        println(f"duration: {duration}");
-
+        println(f"reported_territory: {reported_territory}");
+        println(f"reported_channels_of_distribution: {reported_channels_of_distribution}");
+        println(f"reported_content_standards: {reported_content_standards}");
+        println(f"reported_ai_learning_models: {reported_ai_learning_models}");
+        println(f"reported_cross_platform_use: {reported_cross_platform_use}");
+        
         // @dev - [TEST]
         //test_output(jurisdiction);
 
