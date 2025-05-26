@@ -22,15 +22,13 @@ fn main(
     content_standards: BoundedVec<u8, MAX_CONTENT_STANDARD_LENGTH>,                // The content standards of the derivative work (i.e. 1: PG, 2: R, 3: X, etc. In this case, the values are just examples)
     ai_learning_models: bool,                                                      // Whether or not some parts of the derivative work used for the AI learning models.
     cross_platform_use: bool,                                                      // Whether or not some parts of the derivative work used cross-platform (i.e. the derivative work can be used on different platforms, such as web, mobile, etc.)
-
-    //jurisdiction: u32,                  // The jurisdiction of the agreement (Country code - i.e. +1: US, +44: UK, etc. In this case, "+" sign is not included. Let's say "US" is 1 and "UK" is 44)
-    duration: Field,                    // The duration of the agreement (i.e. 3 month in seconds)
+    
     nullifier: Field
 ) -> pub RevealedData {
     // @dev - Constraint for the jurisdiction(s)
     let out_of_jurisdictions_list: [u32; 3] = [1, 44, 61]; // An example of out of jurisdictions list (In this example case, "US" (+1), "UK" (+44), "Australia" (61) are out of jurisdiction)
     for i in 0..out_of_jurisdictions_list.len() {
-        assert(jurisdiction != out_of_jurisdictions_list[i], "A ginve jurisdiction is out of jurisdiction");
+        assert(jurisdiction != out_of_jurisdictions_list[i], "A given jurisdiction is out of jurisdiction");
     }
 
     // @dev - Constraint for the duration
