@@ -129,11 +129,11 @@ mod tests {
     /// @notice - Test outputs ///
     //////////////////////////////
 
-    #[test]
-    fn test_output(_reported_territory: <u8, MAX_TERRITORY_LENGTH>) {
-        let _territory = _reported_territory.as_str_unchecked();
-        println(f"_territory: {_territory}"); // [Log]:
-    }
+    // #[test]
+    // fn test_output(_reported_territory: <u8, MAX_TERRITORY_LENGTH>) {
+    //     let _territory = _reported_territory.as_str_unchecked();
+    //     println(f"_territory: {_territory}"); // [Log]:
+    // }
 
     // fn test_output(jurisdiction: str<2>) {
     //     let jurisdiction_vec: Vec<u8> = jurisdiction.as_bytes_vec();
