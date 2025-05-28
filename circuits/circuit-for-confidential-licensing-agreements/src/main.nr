@@ -106,7 +106,7 @@ fn create_new_merkle_tree(leaf: Field) -> Field {
     let current_root = 0x00;
     let mut mt = MerkleTree::from(current_root, pedersen_hash);
 
-    let leaf = 0x67635fc829435949ed0ced751d11f3f823087ec463ca6ee53e253fb7e390e74;
+    //let leaf = 0x67635fc829435949ed0ced751d11f3f823087ec463ca6ee53e253fb7e390e74;
     let index: Field = 0x00; // Index = 0
     let paths = [];
     mt.add(leaf, index, paths);
