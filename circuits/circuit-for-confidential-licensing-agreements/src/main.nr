@@ -108,7 +108,12 @@ fn create_new_merkle_tree(leaf: Field) -> Field {
     let index: Field = 0x00;    // Index = 0
     let paths: [Field; 0] = [];
     mt.add(leaf, index, paths);
+
+    // @dev - Constrant: Check if the root is equal to the leaf
     assert(mt.root == leaf);
+
+    // @dev - Constrant: Prove a new leaf is in the Merkle Tree
+    mt.membership(mt.root, index, paths); // @dev - The membership() has no return value.
 
     mt.root
 }
