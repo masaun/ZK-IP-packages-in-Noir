@@ -1,4 +1,4 @@
-pub mod zk_kit {
+pub mod zk_kit_nr {
     // For the Binary Merkle Root
     use binary_merkle_root::binary_merkle_root;
     use std::hash::poseidon::bn254::hash_2 as poseidon2;
@@ -6,6 +6,7 @@ pub mod zk_kit {
     // For the Merkle Tree
     use trees::merkle::MerkleTree;
     use std::hash::poseidon2::Poseidon2::hash;
+    use std::hash::pedersen_hash;
 
     // For the ECDH
     use ecdh::bjj::BJJ; // only Baby JubJub is supported at the moment
@@ -28,27 +29,26 @@ pub mod zk_kit {
     }
 
 
-    /**
-     * @notice - Add a new entry to (existing) Merkle tree + Prove it is in the tree
-     */
-    pub fn hasher(leaves: [Field; 2]) -> Field {
-        hash(leaves, 2)
-    }
+    /** 
+    * @notice - Create a new Merkle tree with a given leaf.
+    * @dev - In this case, a given "leaf" will be a new root.
+    */
+    pub fn create_new_merkle_tree(leaf: Field) -> Field {
+        let current_root: Field = 0x00;
+        let mut mt: MerkleTree<Field> = MerkleTree::from(current_root, pedersen_hash);
 
-    pub fn create_new_merkle_tree() -> MerkleTree<Field> {
-        let mut mt = MerkleTree::new(hasher);
-        mt
-    }
+        //let leaf = 0x67635fc829435949ed0ced751d11f3f823087ec463ca6ee53e253fb7e390e74;
+        let index: Field = 0x00;    // Index = 0
+        let paths: [Field; 0] = [];
+        mt.add(leaf, index, paths);
 
-    pub fn add_entry_to_paths(mut mt: MerkleTree<Field>, entry: Field, index: Field, paths: [Field; 2]) -> MerkleTree<Field> {
-        // add at index 
-        mt.add(entry, index, paths);
-        mt
-    }
+        // @dev - Constrant: Check if the root is equal to the leaf
+        assert(mt.root == leaf);
 
-    pub fn is_membership(mut mt: MerkleTree<Field>, entry: Field, index: Field, paths: [Field; 2]) {
-        // prove it is in the tree (kinda redundant isn't it?)
-        mt.membership(entry, index, paths); // @dev - The membership() has no return value.
+        // @dev - Constrant: Prove a new leaf is in the Merkle Tree
+        mt.membership(mt.root, index, paths); // @dev - The membership() has no return value.
+
+        mt.root
     }
 
 

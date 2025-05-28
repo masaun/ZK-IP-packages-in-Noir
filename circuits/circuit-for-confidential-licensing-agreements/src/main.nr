@@ -4,7 +4,8 @@ mod constants;
 //mod utils; 
 mod zk_kit;
 
-use trees::merkle::MerkleTree;  // Directly imported from "zk-kit.noir" powered by PSE
+use zk_kit::zk_kit_nr::create_new_merkle_tree; // Import the function to create a new Merkle tree
+//use trees::merkle::MerkleTree;  // Directly imported from "zk-kit.noir" powered by PSE
 use std::hash::pedersen_hash;
 use data_types::{ RevealedData };
 use constants::{
@@ -100,20 +101,20 @@ fn main(
  * @notice - Create a new Merkle tree with a given leaf.
  * @dev - In this case, a given "leaf" will be a new root.
  */
-fn create_new_merkle_tree(leaf: Field) -> Field {
-    let current_root: Field = 0x00;
-    let mut mt: MerkleTree<Field> = MerkleTree::from(current_root, pedersen_hash);
+// fn create_new_merkle_tree(leaf: Field) -> Field {
+//     let current_root: Field = 0x00;
+//     let mut mt: MerkleTree<Field> = MerkleTree::from(current_root, pedersen_hash);
 
-    //let leaf = 0x67635fc829435949ed0ced751d11f3f823087ec463ca6ee53e253fb7e390e74;
-    let index: Field = 0x00;    // Index = 0
-    let paths: [Field; 0] = [];
-    mt.add(leaf, index, paths);
+//     //let leaf = 0x67635fc829435949ed0ced751d11f3f823087ec463ca6ee53e253fb7e390e74;
+//     let index: Field = 0x00;    // Index = 0
+//     let paths: [Field; 0] = [];
+//     mt.add(leaf, index, paths);
 
-    // @dev - Constrant: Check if the root is equal to the leaf
-    assert(mt.root == leaf);
+//     // @dev - Constrant: Check if the root is equal to the leaf
+//     assert(mt.root == leaf);
 
-    // @dev - Constrant: Prove a new leaf is in the Merkle Tree
-    mt.membership(mt.root, index, paths); // @dev - The membership() has no return value.
+//     // @dev - Constrant: Prove a new leaf is in the Merkle Tree
+//     mt.membership(mt.root, index, paths); // @dev - The membership() has no return value.
 
-    mt.root
-}
+//     mt.root
+// }
