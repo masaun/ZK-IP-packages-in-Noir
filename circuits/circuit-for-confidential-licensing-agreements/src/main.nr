@@ -39,6 +39,16 @@ fn main(
     let _alternative_dispute_resolution: BoundedVec<Field, MAX_GOVERNING_LAW_LENGTH> = alternative_dispute_resolution.map(|value| value as Field);
     let _additional_parameters: BoundedVec<Field, MAX_ADDITIONAL_PARAMETERS_LENGTH> = additional_parameters.map(|value| value as Field);
 
+    // @dev - Retrieve the array from the BoundedVec
+    let territory_array: [Field; MAX_TERRITORY_LENGTH] = _territory.storage();
+    let channels_of_distribution_array: [Field; MAX_CHANNELS_OF_DISTRIBUTION_LENGTH] = _channels_of_distribution.storage();
+    let content_standards_array: [Field; MAX_CONTENT_STANDARD_LENGTH] = _content_standards.storage();
+    let governing_law_array: [Field; MAX_GOVERNING_LAW_LENGTH] = _governing_law.storage();
+    let alternative_dispute_resolution_array: [Field; MAX_GOVERNING_LAW_LENGTH] = _alternative_dispute_resolution.storage();
+    let additional_parameters_array: [Field; MAX_ADDITIONAL_PARAMETERS_LENGTH] = _additional_parameters.storage();
+
+    
+
 
     // @dev - Constraint for the jurisdiction(s)
     // let out_of_jurisdictions_list: [u32; 3] = [1, 44, 61]; // An example of out of jurisdictions list (In this example case, "US" (+1), "UK" (+44), "Australia" (61) are out of jurisdiction)
