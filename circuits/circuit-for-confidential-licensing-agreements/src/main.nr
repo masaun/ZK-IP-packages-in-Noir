@@ -4,6 +4,7 @@ mod constants;
 //mod utils; 
 mod zk_kit;
 
+use trees::merkle::MerkleTree;  // Directly imported from "zk_kit" module
 use std::hash::pedersen_hash;
 use data_types::{ RevealedData };
 use constants::{
@@ -59,7 +60,19 @@ fn main(
     let alternative_dispute_resolution_hash: Field = pedersen_hash(alternative_dispute_resolution_array);
     let additional_parameters_hash: Field = pedersen_hash(additional_parameters_array);
     
-
+    // @dev - Hashing all the hashes together as a combined hash, which is called "off_chain_terms_hash".
+    let off_chain_terms_hash: Field = pedersen_hash([
+        territory_hash, 
+        channels_of_distribution_hash, 
+        attribution_hash, 
+        content_standards_hash, 
+        sublicensable_hash, 
+        ai_learning_models_hash, 
+        restriction_on_cross_platform_use_hash, 
+        governing_law_hash, 
+        alternative_dispute_resolution_hash, 
+        additional_parameters_hash
+    ]);
 
 
 
