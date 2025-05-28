@@ -47,7 +47,21 @@ fn main(
     let alternative_dispute_resolution_array: [Field; MAX_GOVERNING_LAW_LENGTH] = _alternative_dispute_resolution.storage();
     let additional_parameters_array: [Field; MAX_ADDITIONAL_PARAMETERS_LENGTH] = _additional_parameters.storage();
 
+    // @dev - Hashing /w Pedersen hash
+    let territory_hash: Field = pedersen_hash(territory_array);
+    let channels_of_distribution_hash: Field = pedersen_hash(channels_of_distribution_array);
+    let attribution_hash: Field = pedersen_hash([attribution as Field]);
+    let content_standards_hash: Field = pedersen_hash(content_standards_array);
+    let sublicensable_hash: Field = pedersen_hash([sublicensable as Field]);
+    let ai_learning_models_hash: Field = pedersen_hash([ai_learning_models as Field]);
+    let restriction_on_cross_platform_use_hash: Field = pedersen_hash([restriction_on_cross_platform_use as Field]);
+    let governing_law_hash: Field = pedersen_hash(governing_law_array);
+    let alternative_dispute_resolution_hash: Field = pedersen_hash(alternative_dispute_resolution_array);
+    let additional_parameters_hash: Field = pedersen_hash(additional_parameters_array);
     
+
+
+
 
 
     // @dev - Constraint for the jurisdiction(s)
