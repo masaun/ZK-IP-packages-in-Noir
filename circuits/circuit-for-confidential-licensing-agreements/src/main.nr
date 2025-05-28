@@ -79,27 +79,38 @@ fn main(
     // @dev - Generate an off-chain terms commitment hash
     let off_chain_terms_commitment: Field = pedersen_hash([off_chain_terms_hash, secret]);
 
+    // @dev - Create a new Merkle tree with the off-chain terms commitment as the root
+    let new_root = create_new_merkle_tree(off_chain_terms_commitment);
 
-
-
-    // @dev - Constraint for the jurisdiction(s)
-    // let out_of_jurisdictions_list: [u32; 3] = [1, 44, 61]; // An example of out of jurisdictions list (In this example case, "US" (+1), "UK" (+44), "Australia" (61) are out of jurisdiction)
-    // for i in 0..out_of_jurisdictions_list.len() {
-    //     assert(jurisdiction != out_of_jurisdictions_list[i], "A given jurisdiction is out of jurisdiction");
-    // }
-
-    // @dev - Constraint for the duration
-    // assert(duration as u32 > 2628000, "Duration must be greater than 1 mounth (in seconds = 2628000 sec)");
-
-    let expected_nullifier: Field = pedersen_hash([duration]);
+    // @dev - Compute the nullifier
+    let expected_nullifier: Field = pedersen_hash([off_chain_terms_commitment]);
     println(f"expected_nullifier: {expected_nullifier}");
     println(f"nullifier: {nullifier}");
     assert(expected_nullifier == nullifier, "Nullifier mismatch");
 
     // @dev - Return
     let revealed_data = RevealedData {
+        new_root: new_root,
         nullifier: nullifier
     };
     revealed_data
     //nullifier
+}
+
+
+/** 
+ * @notice - Create a new Merkle tree with a given leaf.
+ * @dev - In this case, a given "leaf" will be a new root.
+ */
+fn create_new_merkle_tree(leaf: Field) -> Field {
+    let current_root = 0x00;
+    let mut mt = MerkleTree::from(current_root, pedersen_hash);
+
+    let leaf = 0x67635fc829435949ed0ced751d11f3f823087ec463ca6ee53e253fb7e390e74;
+    let index: Field = 0x00; // Index = 0
+    let paths = [];
+    mt.add(leaf, index, paths);
+    assert(mt.root == leaf);
+
+    mt.root
 }
