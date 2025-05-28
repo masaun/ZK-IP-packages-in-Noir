@@ -25,6 +25,8 @@ fn main(
     alternative_dispute_resolution: BoundedVec<u8, MAX_GOVERNING_LAW_LENGTH>,
     additional_parameters: BoundedVec<u8, MAX_ADDITIONAL_PARAMETERS_LENGTH>,
 
+    secret: Field,
+
     // @dev - Original parameers
     //jurisdiction: u32,                  // The jurisdiction of the agreement (Country code - i.e. +1: US, +44: UK, etc. In this case, "+" sign is not included. Let's say "US" is 1 and "UK" is 44)
     //jurisdiction: str<2>,               // The jurisdiction of the agreement (Country code - i.e. US, UK, etc.)
@@ -73,6 +75,9 @@ fn main(
         alternative_dispute_resolution_hash, 
         additional_parameters_hash
     ]);
+
+    // @dev - Generate an off-chain terms commitment hash
+    let off_chain_terms_commitment: Field = pedersen_hash([off_chain_terms_hash, secret]);
 
 
 
