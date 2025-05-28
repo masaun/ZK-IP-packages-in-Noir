@@ -23,6 +23,7 @@ mod tests {
         let governing_law: BoundedVec<u8, MAX_GOVERNING_LAW_LENGTH> = BoundedVec::from_array([1, 2, 3]);                        // The laws of a certain jurisdiction by which this license abides. By default, this is California, USA.
         let alternative_dispute_resolution: BoundedVec<u8, MAX_GOVERNING_LAW_LENGTH> = BoundedVec::from_array([1, 2, 3]);       // Please see section 3.1 (s) here.
         let additional_parameters: BoundedVec<u8, MAX_ADDITIONAL_PARAMETERS_LENGTH> = BoundedVec::from_array([1, 2, 3]);        // There may be other terms the licensor would like to add and they can do so in this tag.
+        let secret: Field = 123456789; // A secret value that is used to generate the nullifier
         println(f"territory: {territory}");
         println(f"channels_of_distribution: {channels_of_distribution}");
         println(f"attribution: {attribution}");
@@ -33,19 +34,55 @@ mod tests {
         println(f"governing_law: {governing_law}");
         println(f"alternative_dispute_resolution: {alternative_dispute_resolution}");
         println(f"additional_parameters: {additional_parameters}");
+        println(f"secret: {secret}");
         
-        // let jurisdiction: u32 = 49;         // Country code - Germany (+49)
-        // //let jurisdiction: str<2> = "uk";  // An example jurisdiction of the agreement (Country code - i.e. US, UK, etc.)
-        // //let jurisdiction: BoundedVec<u8, 2> = BoundedVec::from([1, 2]);
-        let duration: Field = 7884000;      // 3 month in seconds
-        // println(f"jurisdiction: {jurisdiction}");
-        // println(f"duration: {duration}");
+        // @dev - Convert the BoundedVec<u8; ..> to the BoundedVec<Field; ..>
+        let _territory: BoundedVec<Field, MAX_TERRITORY_LENGTH> = territory.map(|value| value as Field);
+        let _channels_of_distribution: BoundedVec<Field, MAX_CHANNELS_OF_DISTRIBUTION_LENGTH> = channels_of_distribution.map(|value| value as Field);
+        let _content_standards: BoundedVec<Field, MAX_CONTENT_STANDARD_LENGTH> = content_standards.map(|value| value as Field);
+        let _governing_law: BoundedVec<Field, MAX_GOVERNING_LAW_LENGTH> = governing_law.map(|value| value as Field);
+        let _alternative_dispute_resolution: BoundedVec<Field, MAX_GOVERNING_LAW_LENGTH> = alternative_dispute_resolution.map(|value| value as Field);
+        let _additional_parameters: BoundedVec<Field, MAX_ADDITIONAL_PARAMETERS_LENGTH> = additional_parameters.map(|value| value as Field);
 
-        // @dev - [TEST]
-        //test_output(jurisdiction);
+        // @dev - Retrieve the array from the BoundedVec
+        let territory_array: [Field; MAX_TERRITORY_LENGTH] = _territory.storage();
+        let channels_of_distribution_array: [Field; MAX_CHANNELS_OF_DISTRIBUTION_LENGTH] = _channels_of_distribution.storage();
+        let content_standards_array: [Field; MAX_CONTENT_STANDARD_LENGTH] = _content_standards.storage();
+        let governing_law_array: [Field; MAX_GOVERNING_LAW_LENGTH] = _governing_law.storage();
+        let alternative_dispute_resolution_array: [Field; MAX_GOVERNING_LAW_LENGTH] = _alternative_dispute_resolution.storage();
+        let additional_parameters_array: [Field; MAX_ADDITIONAL_PARAMETERS_LENGTH] = _additional_parameters.storage();
+
+        // @dev - Hashing /w Pedersen hash
+        let territory_hash: Field = pedersen_hash(territory_array);
+        let channels_of_distribution_hash: Field = pedersen_hash(channels_of_distribution_array);
+        let attribution_hash: Field = pedersen_hash([attribution as Field]);
+        let content_standards_hash: Field = pedersen_hash(content_standards_array);
+        let sublicensable_hash: Field = pedersen_hash([sublicensable as Field]);
+        let ai_learning_models_hash: Field = pedersen_hash([ai_learning_models as Field]);
+        let restriction_on_cross_platform_use_hash: Field = pedersen_hash([restriction_on_cross_platform_use as Field]);
+        let governing_law_hash: Field = pedersen_hash(governing_law_array);
+        let alternative_dispute_resolution_hash: Field = pedersen_hash(alternative_dispute_resolution_array);
+        let additional_parameters_hash: Field = pedersen_hash(additional_parameters_array);
+        
+        // @dev - Hashing all the hashes together as a combined hash, which is called "off_chain_terms_hash".
+        let off_chain_terms_hash: Field = pedersen_hash([
+            territory_hash, 
+            channels_of_distribution_hash, 
+            attribution_hash, 
+            content_standards_hash, 
+            sublicensable_hash, 
+            ai_learning_models_hash, 
+            restriction_on_cross_platform_use_hash, 
+            governing_law_hash, 
+            alternative_dispute_resolution_hash, 
+            additional_parameters_hash
+        ]);
+
+        // @dev - Generate an off-chain terms commitment hash
+        let off_chain_terms_commitment: Field = pedersen_hash([off_chain_terms_hash, secret]);
 
         // @dev - Generate the nullifier
-        let nullifier = pedersen_hash([duration]);
+        let nullifier = pedersen_hash([off_chain_terms_commitment]);
         println(f"nullifier: {nullifier}");
 
         // @dev - Generate a ZKP and publicInput as the "revealed_data"
@@ -60,12 +97,14 @@ mod tests {
             governing_law,
             alternative_dispute_resolution,
             additional_parameters,
-            duration,
+            secret,
             nullifier
         );
 
         // @dev - Check the revealed data, which is the publicInput
+        let revealed_data_new_root = revealed_data.new_root;
         let revealed_data_nullifier = revealed_data.nullifier;
+        println(f"revealed_data.new_root: {revealed_data_new_root}");
         println(f"revealed_data.nullifier: {revealed_data_nullifier}");
     }
 
