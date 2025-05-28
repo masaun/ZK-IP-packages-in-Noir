@@ -1,12 +1,14 @@
 mod tests;      // tests/mod.nr
-mod data_types; // data_types.nr
+mod data_types;
+mod constants;
 //mod utils; 
 mod zk_kit;
 
 use std::hash::pedersen_hash;
-use data_types::{ 
-    RevealedData,
-    MAX_TERRITORY_LENGTH, MAX_CHANNELS_OF_DISTRIBUTION_LENGTH, MAX_CONTENT_STANDARD_LENGTH, MAX_GOVERNING_LAW_LENGTH, MAX_ADDITIONAL_PARAMETERS_LENGTH
+use data_types::{ RevealedData };
+use constants::{
+    MAX_TERRITORY_LENGTH, MAX_CHANNELS_OF_DISTRIBUTION_LENGTH, 
+    MAX_CONTENT_STANDARD_LENGTH, MAX_GOVERNING_LAW_LENGTH, MAX_ADDITIONAL_PARAMETERS_LENGTH
 };
 
 fn main(
