@@ -4,7 +4,7 @@ mod constants;
 //mod utils; 
 mod zk_kit;
 
-use trees::merkle::MerkleTree;  // Directly imported from "zk_kit" module
+use trees::merkle::MerkleTree;  // Directly imported from "zk-kit.noir" powered by PSE
 use std::hash::pedersen_hash;
 use data_types::{ RevealedData };
 use constants::{
@@ -101,12 +101,12 @@ fn main(
  * @dev - In this case, a given "leaf" will be a new root.
  */
 fn create_new_merkle_tree(leaf: Field) -> Field {
-    let current_root = 0x00;
-    let mut mt = MerkleTree::from(current_root, pedersen_hash);
+    let current_root: Field = 0x00;
+    let mut mt: MerkleTree<Field> = MerkleTree::from(current_root, pedersen_hash);
 
     //let leaf = 0x67635fc829435949ed0ced751d11f3f823087ec463ca6ee53e253fb7e390e74;
-    let index: Field = 0x00; // Index = 0
-    let paths = [];
+    let index: Field = 0x00;    // Index = 0
+    let paths: [Field; 0] = [];
     mt.add(leaf, index, paths);
     assert(mt.root == leaf);
 
