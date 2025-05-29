@@ -5,7 +5,7 @@ mod constants;
 mod zk_kit;
 
 use zk_kit::{
-    zk_kit_nr_binary_merkle_root::{binary_merkle_root},
+    zk_kit_nr_binary_merkle_root::{compute_binary_merkle_root, MAX_DEPTH},
     zk_kit_nr_merkle_tree::{create_new_merkle_tree},
     zk_kit_nr_ecdh::{create_new_public_key, create_new_shared_key}
 };
@@ -84,6 +84,9 @@ fn main(
 
     // @dev - Create a new Merkle tree with the off-chain terms commitment as the root
     let new_root = create_new_merkle_tree(off_chain_terms_commitment);
+
+    // @dev - Compute the binary merkle root -> [TODO]: Add the arguments
+    let root: Field = compute_binary_merkle_root();
 
     // @dev - Compute the nullifier
     let expected_nullifier: Field = pedersen_hash([off_chain_terms_commitment]);

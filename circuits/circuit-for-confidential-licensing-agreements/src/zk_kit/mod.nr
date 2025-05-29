@@ -15,7 +15,14 @@ pub mod zk_kit_nr_binary_merkle_root {
         merkle_proof_siblings: [Field; MAX_DEPTH], 
     ) -> pub Field {
         // Calculate Merkle root.
-        let merkle_root = binary_merkle_root(poseidon2, identity_commitment, merkle_proof_length, merkle_proof_indices, merkle_proof_siblings);
+        let merkle_root = binary_merkle_root(
+                                    poseidon2, 
+                                    identity_commitment, 
+                                    merkle_proof_length, 
+                                    merkle_proof_indices, 
+                                    merkle_proof_siblings
+                                );
+        
         merkle_root
     }
 }
