@@ -4,7 +4,11 @@ mod constants;
 //mod utils; 
 mod zk_kit;
 
-use zk_kit::zk_kit_nr::create_new_merkle_tree; // Import the function to create a new Merkle tree
+use zk_kit::{
+    zk_kit_nr_binary_merkle_root::{binary_merkle_root},
+    zk_kit_nr_merkle_tree::{create_new_merkle_tree},
+    zk_kit_nr_ecdh::{create_new_public_key, create_new_shared_key}
+};
 //use trees::merkle::MerkleTree;  // Directly imported from "zk-kit.noir" powered by PSE
 use std::hash::pedersen_hash;
 use data_types::{ RevealedData };

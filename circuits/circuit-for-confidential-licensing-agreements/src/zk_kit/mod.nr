@@ -1,16 +1,7 @@
-pub mod zk_kit_nr {
+pub mod zk_kit_nr_binary_merkle_root {
     // For the Binary Merkle Root
     use binary_merkle_root::binary_merkle_root;
     use std::hash::poseidon::bn254::hash_2 as poseidon2;
-
-    // For the Merkle Tree
-    use trees::merkle::MerkleTree;
-    use std::hash::poseidon2::Poseidon2::hash;
-    use std::hash::pedersen_hash;
-
-    // For the ECDH
-    use ecdh::bjj::BJJ; // only Baby JubJub is supported at the moment
-    use ec::tecurve::affine::Point;
 
     global MAX_DEPTH: u32 = 32; // Max depth of the Merkle tree
 
@@ -27,7 +18,14 @@ pub mod zk_kit_nr {
         let merkle_root = binary_merkle_root(poseidon2, identity_commitment, merkle_proof_length, merkle_proof_indices, merkle_proof_siblings);
         merkle_root
     }
+}
 
+
+pub mod zk_kit_nr_merkle_tree {
+    // For the Merkle Tree
+    use trees::merkle::MerkleTree;
+    use std::hash::poseidon2::Poseidon2::hash;
+    use std::hash::pedersen_hash;
 
     /** 
     * @notice - Create a new Merkle tree with a given leaf.
@@ -50,7 +48,13 @@ pub mod zk_kit_nr {
 
         mt.root
     }
+}
 
+
+pub mod zk_kit_nr_ecdh {
+    // For the ECDH
+    use ecdh::bjj::BJJ; // only Baby JubJub is supported at the moment
+    use ec::tecurve::affine::Point;
 
     /**
      * @notice - Create a new public key /or shared key
