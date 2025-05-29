@@ -9,6 +9,12 @@ mod tests {
         MAX_CONTENT_STANDARD_LENGTH, MAX_GOVERNING_LAW_LENGTH, MAX_ADDITIONAL_PARAMETERS_LENGTH
     };
 
+    use crate::zk_kit::{
+        zk_kit_nr_binary_merkle_root::{compute_binary_merkle_root, MAX_DEPTH},
+        zk_kit_nr_merkle_tree::{create_new_merkle_tree},
+        zk_kit_nr_ecdh::{create_new_public_key, create_new_shared_key}
+    };
+
     use std::hash::pedersen_hash;
 
     #[test]
@@ -64,6 +70,11 @@ mod tests {
         let alternative_dispute_resolution_hash: Field = pedersen_hash(alternative_dispute_resolution_array);
         let additional_parameters_hash: Field = pedersen_hash(additional_parameters_array);
         
+        // @dev - Merkle proof parameters -> This is an case that create a new Merkle tree with a new root.
+        let merkle_proof_length: u32 = 1;                       // @dev - Depth
+        let merkle_proof_indices: [u1; MAX_DEPTH] = [0];        // @dev - Left leaf (0)
+        let merkle_proof_siblings: [Field; MAX_DEPTH] = [0x00]; // @dev - There is no siblings because new Merkle Tree is created in this case, so we can use "index = 0" (= 0x00).
+
         // @dev - Hashing all the hashes together as a combined hash, which is called "off_chain_terms_hash".
         let off_chain_terms_hash: Field = pedersen_hash([
             territory_hash, 
@@ -98,6 +109,9 @@ mod tests {
             alternative_dispute_resolution,
             additional_parameters,
             secret,
+            merkle_proof_length,
+            merkle_proof_indices,
+            merkle_proof_siblings,
             nullifier
         );
 
