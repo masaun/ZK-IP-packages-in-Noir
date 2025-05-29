@@ -30,6 +30,10 @@ fn main(
     alternative_dispute_resolution: BoundedVec<u8, MAX_GOVERNING_LAW_LENGTH>,
     additional_parameters: BoundedVec<u8, MAX_ADDITIONAL_PARAMETERS_LENGTH>,
     secret: Field,
+    // @dev - Merkle proof parameters
+    merkle_proof_length: u32,
+    merkle_proof_indices: [u1; MAX_DEPTH],
+    merkle_proof_siblings: [Field; MAX_DEPTH],
     // @dev - Original parameers
     //jurisdiction: u32,                  // The jurisdiction of the agreement (Country code - i.e. +1: US, +44: UK, etc. In this case, "+" sign is not included. Let's say "US" is 1 and "UK" is 44)
     //jurisdiction: str<2>,               // The jurisdiction of the agreement (Country code - i.e. US, UK, etc.)
@@ -86,7 +90,12 @@ fn main(
     let new_root = create_new_merkle_tree(off_chain_terms_commitment);
 
     // @dev - Compute the binary merkle root -> [TODO]: Add the arguments
-    let root: Field = compute_binary_merkle_root();
+    let root: Field = compute_binary_merkle_root(
+        off_chain_terms_commitment, 
+        merkle_proof_length,  // @dev - If the new merkle tree is created, this will be 0. If the existing merkle tree is used, this will be "> 0".
+        merkle_proof_indices, // @dev - 0 or 1
+        merkle_proof_siblings // @dev - The siblings (leaf's hash) of the Merkle proof. (NOTE: Counted from the "lowest" level of tree to the highest level of tree)
+    );
 
     // @dev - Compute the nullifier
     let expected_nullifier: Field = pedersen_hash([off_chain_terms_commitment]);
