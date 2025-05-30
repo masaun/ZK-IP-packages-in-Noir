@@ -89,7 +89,7 @@ fn main(
     // @dev - Create a new Merkle tree with the off-chain terms commitment as the root
     let new_root = create_new_merkle_tree(off_chain_terms_commitment);
 
-    // @dev - Compute the binary merkle root -> [TODO]: Add the arguments
+    // @dev - Compute the binary merkle root
     let root: Field = compute_binary_merkle_root(
         off_chain_terms_commitment, 
         merkle_proof_length,  // @dev - If the new merkle tree is created, this will be 0. If the existing merkle tree is used, this will be "> 0".
