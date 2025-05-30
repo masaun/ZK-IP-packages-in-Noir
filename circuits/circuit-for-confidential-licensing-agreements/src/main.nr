@@ -105,7 +105,7 @@ fn main(
 
     // @dev - Return
     let revealed_data = RevealedData {
-        new_root: new_root,
+        new_merkle_root: new_merkle_root,
         nullifier: nullifier
     };
     revealed_data

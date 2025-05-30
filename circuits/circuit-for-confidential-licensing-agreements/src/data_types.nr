@@ -1,4 +1,4 @@
 pub struct RevealedData {
-    new_root: Field,
+    new_merkle_root: Field,
     nullifier: Field
 }

@@ -117,9 +117,9 @@ mod tests {
         );
 
         // @dev - Check the revealed data, which is the publicInput
-        let revealed_data_new_root = revealed_data.new_root;
+        let revealed_data_new_merkle_root = revealed_data.new_merkle_root;
         let revealed_data_nullifier = revealed_data.nullifier;
-        println(f"revealed_data.new_root: {revealed_data_new_root}");
+        println(f"revealed_data.new_merkle_root: {revealed_data_new_merkle_root}");
         println(f"revealed_data.nullifier: {revealed_data_nullifier}");
     }
 
@@ -223,9 +223,9 @@ mod tests {
         );
 
         // @dev - Check the revealed data, which is the publicInput
-        let revealed_data_new_root = revealed_data.new_root;
+        let revealed_data_new_merkle_root = revealed_data.new_merkle_root;
         let revealed_data_nullifier = revealed_data.nullifier;
-        println(f"revealed_data.new_root: {revealed_data_new_root}");
+        println(f"revealed_data.new_merkle_root: {revealed_data_new_merkle_root}");
         println(f"revealed_data.nullifier: {revealed_data_nullifier}");
     }
 
