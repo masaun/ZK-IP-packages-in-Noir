@@ -43,7 +43,7 @@ mod tests {
         println(f"reported_additional_parameters: {reported_additional_parameters}");
         
         // @dev - [TEST]
-        //test_output(jurisdiction);
+        //test_output(reported_territory);
 
         // @dev - Generate the nullifier
         let nullifier = pedersen_hash([reported_timestamp_at]);
@@ -129,9 +129,14 @@ mod tests {
     /// @notice - Test outputs ///
     //////////////////////////////
 
-    #[test]
-    fn test_output(jurisdiction: str<2>) {
-        let jurisdiction_vec: Vec<u8> = jurisdiction.as_bytes_vec();
-        println(f"jurisdiction_vec: {jurisdiction_vec}"); // [Log]: Vec { slice: &[117, 107] }
-    }
+    // #[test]
+    // fn test_output(_reported_territory: <u8, MAX_TERRITORY_LENGTH>) {
+    //     let _territory = _reported_territory.as_str_unchecked();
+    //     println(f"_territory: {_territory}"); // [Log]:
+    // }
+
+    // fn test_output(jurisdiction: str<2>) {
+    //     let jurisdiction_vec: Vec<u8> = jurisdiction.as_bytes_vec();
+    //     println(f"jurisdiction_vec: {jurisdiction_vec}"); // [Log]: Vec { slice: &[117, 107] }
+    // }
 }
