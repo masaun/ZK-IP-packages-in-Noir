@@ -118,8 +118,10 @@ mod tests {
 
         // @dev - Check the revealed data, which is the publicInput
         let revealed_data_new_merkle_root = revealed_data.new_merkle_root;
+        let revealed_data_binary_merkle_root = revealed_data.binary_merkle_root;
         let revealed_data_nullifier = revealed_data.nullifier;
         println(f"revealed_data.new_merkle_root: {revealed_data_new_merkle_root}");
+        println(f"revealed_data.binary_merkle_root: {revealed_data_binary_merkle_root}");
         println(f"revealed_data.nullifier: {revealed_data_nullifier}");
     }
 
@@ -181,6 +183,7 @@ mod tests {
         let merkle_proof_length: u32 = 2;                             // @dev - Depth
         let merkle_proof_indices: [u1; MAX_DEPTH] = [1; MAX_DEPTH];   // @dev - Right leaf (1): [1, 0, 0, ..., 0] (This is consist of 1 and 31 of 0s)
         let merkle_proof_siblings: [Field; MAX_DEPTH] = [0x1968049bebaccc1e138a92011f5afdf62dcf4d314a699fb710c342014878f019; MAX_DEPTH]; // @dev - There is siblings (): [0x196..f019, 0, 0, ..., 0] (This is consist of "0x196..f019" and 31 of 0s)
+        let binary_merkle_root: Field = 0x2ac815dbfffeb3dd2cf0d12bd766664d8836bb3fa1e081968257619e9ab8b9ed;
 
         // @dev - Hashing all the hashes together as a combined hash, which is called "off_chain_terms_hash".
         let off_chain_terms_hash: Field = pedersen_hash([
@@ -224,9 +227,14 @@ mod tests {
 
         // @dev - Check the revealed data, which is the publicInput
         let revealed_data_new_merkle_root = revealed_data.new_merkle_root;
+        let revealed_data_binary_merkle_root = revealed_data.binary_merkle_root;
         let revealed_data_nullifier = revealed_data.nullifier;
         println(f"revealed_data.new_merkle_root: {revealed_data_new_merkle_root}");
+        println(f"revealed_data.binary_merkle_root: {revealed_data_binary_merkle_root}");
         println(f"revealed_data.nullifier: {revealed_data_nullifier}");
+
+        // @dev - Check the binary merkle root
+        assert(binary_merkle_root == revealed_data_binary_merkle_root, "Binary Merkle Root mismatch");
     }
 
     // #[test(should_fail_with = "A given jurisdiction is out of jurisdiction")]

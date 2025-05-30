@@ -90,7 +90,7 @@ fn main(
     let new_merkle_root = create_new_merkle_tree(off_chain_terms_commitment);
 
     // @dev - Compute the binary merkle root
-    let merkle_root: Field = compute_binary_merkle_root(
+    let binary_merkle_root: Field = compute_binary_merkle_root(
         off_chain_terms_commitment, 
         merkle_proof_length,  // @dev - If the new merkle tree is created, this will be 0. If the existing merkle tree is used, this will be "> 0".
         merkle_proof_indices, // @dev - 0 or 1
@@ -106,6 +106,7 @@ fn main(
     // @dev - Return
     let revealed_data = RevealedData {
         new_merkle_root: new_merkle_root,
+        binary_merkle_root: binary_merkle_root,
         nullifier: nullifier
     };
     revealed_data
