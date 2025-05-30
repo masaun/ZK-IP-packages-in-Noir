@@ -30,6 +30,7 @@ fn main(
     alternative_dispute_resolution: BoundedVec<u8, MAX_GOVERNING_LAW_LENGTH>,
     additional_parameters: BoundedVec<u8, MAX_ADDITIONAL_PARAMETERS_LENGTH>,
     secret: Field,
+    // @dev - 
     // @dev - Merkle proof parameters
     merkle_proof_length: u32,
     merkle_proof_indices: [u1; MAX_DEPTH],
@@ -87,7 +88,7 @@ fn main(
     let off_chain_terms_commitment: Field = pedersen_hash([off_chain_terms_hash, secret]);
 
     // @dev - Create a new Merkle tree with the off-chain terms commitment as the root
-    let new_merkle_root = create_new_merkle_tree(off_chain_terms_commitment);
+    //let new_merkle_root = create_new_merkle_tree(off_chain_terms_commitment);
 
     // @dev - Compute the binary merkle root
     let binary_merkle_root: Field = compute_binary_merkle_root(
@@ -105,7 +106,7 @@ fn main(
 
     // @dev - Return
     let revealed_data = RevealedData {
-        new_merkle_root: new_merkle_root,
+        //new_merkle_root: new_merkle_root,
         binary_merkle_root: binary_merkle_root,
         nullifier: nullifier
     };
