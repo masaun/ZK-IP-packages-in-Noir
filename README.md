@@ -4,7 +4,7 @@
 
 - `ZK circuit`: Implemented in [`Noir`](https://noir-lang.org/docs/) powered by [Aztec](https://aztec.network/)
 - Smart Contract: Implemented in Solidity (Framework: Foundry) (NOTE: Still in progress to implement the smart contracts)
-- Blockchain: [`Story` Protocol](https://docs.pharosnetwork.xyz/developer-guides/pharos-devnet-onboarding-guide#rpc-endpoint) (NOTE: Still in progress to deploy on this chain)
+- Blockchain: [`Story` Protocol](https://docs.pharosnetwork.xyz/developer-guides/pharos-devnet-onboarding-guide#rpc-endpoint) (NOTE: Still in progress to implement the smart contracts and deploy on this chain)
 
 <br>
 
@@ -24,7 +24,7 @@
 - Specification:
   - The license terms are encoded off-chain.
   - A ZKP (Zero-Knowledge Proof) is used to prove that the agreement complies with certain conditions (e.g., jurisdiction, duration) **without revealing** the specific terms.
-  - The proof is linked to the `IP Asset's metadata` on **Story Protocol**.
+  - The proof is linked to the [`IP Asset's metadata`](https://docs.story.foundation/concepts/ip-asset/ipa-metadata-standard) on **Story Protocol**.
 
 - Benefit: Enables enforcement of licensing conditions while preserving confidentiality.
 
@@ -81,9 +81,19 @@ sh circuit_test
 
 ## References
 
-- Story Protocol:
-
 - Noir:
 
+<br>
+
 - ZK-Kit:
+
+<br>
+
+- Story Protocol:
+  - IPA Metadata Standard: https://docs.story.foundation/concepts/ip-asset/ipa-metadata-standard
+  - On-chain terms (`PILTerms` struct): https://docs.story.foundation/concepts/programmable-ip-license/pil-terms#on-chain-terms
+  - Off-chain terms to be included in `uri` field: https://docs.story.foundation/concepts/programmable-ip-license/pil-terms#off-chain-terms-to-be-included-in-uri-field
+  - Story Protocol - Boilerplate: https://github.com/storyprotocol/story-protocol-boilerplate/tree/main
+  
+
 
