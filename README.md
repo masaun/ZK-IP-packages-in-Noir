@@ -63,9 +63,19 @@ sh circuit_test
 
 <br>
 
+## DEMO 
+
+- DEMO Video:
+  - Currently, this DEMO Video is only for the test of the ZK circuits: https://vimeo.com/1093559312/111c453f4c
+   
+
+<br>
+
 ## References
 
 - Story Protocol:
 
 - Noir:
+
+- ZK-Kit:
 
