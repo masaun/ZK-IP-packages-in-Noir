@@ -27,7 +27,7 @@ echo "Generate witness..."
 nargo execute
 
 echo "Proving and generating a zkProof..."
-bb prove -b ./target/derivative_work.json -w ./target/derivative_work.gz -o ./target/proof
+bb prove -b ./target/derivative_work.json -w ./target/derivative_work.gz -o ./target/proof/proof
 #bb prove -b ./target/derivative_work.json -w ./target/derivative_work.gz -o ./target
 #bb prove -b ./target/derivative_work.json -w ./target/derivative_work.gz -o ./target/derivative_work_proof.bin
 
@@ -55,10 +55,10 @@ bb write_solidity_verifier -k ./target/vk/derivative_work_vk.bin -o ./target/Ver
 #bb write_solidity_verifier -k ./target/vk -o ./target/Verifier.sol
 #bb contract
 
-echo "Copy a Solidity Verifier contract-generated (Verifier.sol) into the ./contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier directory"
-cp ./target/Verifier.sol ../../contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier
+echo "Copy a Solidity Verifier contract-generated (Verifier.sol) into the ./contracts/circuits/circuit-for-derivative-works/honk-verifier directory"
+cp ./target/Verifier.sol ../../contracts/circuits/circuit-for-derivative-works/honk-verifier
 
-echo "Rename the Verifier.sol with the plonk_vk.sol in the ./contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier directory"
-mv ../../contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier/Verifier.sol ../../contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier/plonk_vk.sol
+echo "Rename the Verifier.sol with the plonk_vk.sol in the ./contracts/circuits/circuit-for-derivative-works/honk-verifier directory"
+mv ../../contracts/circuits/circuit-for-derivative-works/honk-verifier/Verifier.sol ../../contracts/circuits/circuit-for-derivative-works/honk-verifier/plonk_vk.sol
 
 echo "Done"

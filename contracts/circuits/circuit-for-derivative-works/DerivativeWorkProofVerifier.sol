@@ -1,6 +1,6 @@
 pragma solidity ^0.8.28;
 
-import { HonkVerifier } from "./circuit-for-ip-protection-for-derivative-works/honk-verifier/plonk_vk.sol";
+import { HonkVerifier } from "./circuit-for-derivative-works/honk-verifier/plonk_vk.sol";
 //import "../circuits/target/contract.sol";
 
 contract DerivativeWorkProofVerifier {
