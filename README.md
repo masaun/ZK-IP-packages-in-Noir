@@ -1,19 +1,21 @@
-# 【IN PROGRESS】ZK IP packages in Noir
+# ZK IP packages in Noir
 
 ## Overview
 
-- This is the package of Zero-Knowledge (ZK) circuit in Noir for the Intellectual property (IP).
+- This is the package of `Zero-Knowledge` (`ZK`) circuits in Noir for the privacy-preserving `Intellectual Property (IP)`.
 
-- This package of the ZK circuits in Noir for the Intellectual property (IP) would be consist of two circuits.
+- This package is consist of the following two type of ZK circuits:
+  - `Confidential Licensing Agreements`
+  - `Selective Disclosure` in `Derivative Works`
 
 <br>
 
 ### 1. Confidential Licensing Agreements
-- Example scenario: Two parties enter into a licensing agreement with sensitive terms.
+- Example use case: Two parties enter into a licensing agreement with sensitive terms.
 
-- Implementation:
+- Specification:
   - The license terms are encoded off-chain.
-  - A ZKP is used to prove that the agreement complies with certain conditions (e.g., jurisdiction, duration) without revealing the specific terms.
+  - A ZKP (Zero-Knowledge Proof) is used to prove that the agreement complies with certain conditions (e.g., jurisdiction, duration) **without revealing** the specific terms.
   - The proof is linked to the `IP Asset's metadata` on **Story Protocol**.
 
 - Benefit: Enables enforcement of licensing conditions while preserving confidentiality.
@@ -22,11 +24,11 @@
 
 ### 2. Selective Disclosure in Derivative Works
 
-- Example scenario: A creator wants to allow derivatives of their work under specific conditions.
+- Example use case: A creator wants to allow derivatives of their work under specific conditions.
 
-- Implementation:
+- Specification:
   - The original IP Asset includes metadata specifying permissible derivative conditions.
-  - A ZKP verifies that a derivative work meets these conditions without revealing the derivative's content.
+  - A ZKP  (Zero-Knowledge Proof) would verify that a derivative work meets these conditions **without revealing** the full `derivative's content`.
   - Upon successful verification, the derivative is registered as a new IP Asset linked to the original.
 
 - Benefit: Facilitates controlled collaboration and expansion of creative works.
