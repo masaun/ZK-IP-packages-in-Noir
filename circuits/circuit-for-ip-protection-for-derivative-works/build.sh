@@ -27,7 +27,7 @@ echo "Generate witness..."
 nargo execute
 
 echo "Proving and generating a zkProof..."
-bb prove -b ./target/derivative_work.json -w ./target/derivative_work.gz -o ./target/proof
+bb prove -b ./target/derivative_work.json -w ./target/derivative_work.gz -o ./target/proof/proof
 #bb prove -b ./target/derivative_work.json -w ./target/derivative_work.gz -o ./target
 #bb prove -b ./target/derivative_work.json -w ./target/derivative_work.gz -o ./target/derivative_work_proof.bin
 
