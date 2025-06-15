@@ -55,10 +55,10 @@ bb write_solidity_verifier -k ./target/vk/derivative_work_vk.bin -o ./target/Ver
 #bb write_solidity_verifier -k ./target/vk -o ./target/Verifier.sol
 #bb contract
 
-echo "Copy a Solidity Verifier contract-generated (Verifier.sol) into the ./contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier directory"
-cp ./target/Verifier.sol ../../contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier
+echo "Copy a Solidity Verifier contract-generated (Verifier.sol) into the ./contracts/circuits/circuit-for-derivative-works/honk-verifier directory"
+cp ./target/Verifier.sol ../../contracts/circuits/circuit-for-derivative-works/honk-verifier
 
-echo "Rename the Verifier.sol with the plonk_vk.sol in the ./contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier directory"
-mv ../../contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier/Verifier.sol ../../contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier/plonk_vk.sol
+echo "Rename the Verifier.sol with the plonk_vk.sol in the ./contracts/circuits/circuit-for-derivative-works/honk-verifier directory"
+mv ../../contracts/circuits/circuit-for-derivative-works/honk-verifier/Verifier.sol ../../contracts/circuits/circuit-for-derivative-works/honk-verifier/plonk_vk.sol
 
 echo "Done"

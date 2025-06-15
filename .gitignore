@@ -19,11 +19,11 @@ circuits/circuit-for-confidential-licensing-agreements/test_verifyProof.toml
 circuits/circuit-for-confidential-licensing-agreements/test_wrongProof.toml
 
 # Circuit for IP protection for Derivative Works
-circuits/circuit-for-ip-protection-for-derivative-works/target/*
-#circuits/circuit-for-ip-protection-for-derivative-works/Prover.toml
-circuits/circuit-for-ip-protection-for-derivative-works/Verifier.toml
-circuits/circuit-for-ip-protection-for-derivative-works/test_verifyProof.toml
-circuits/circuit-for-ip-protection-for-derivative-works/test_wrongProof.toml
+circuits/circuit-for-derivative-works/target/*
+#circuits/circuit-for-derivative-works/Prover.toml
+circuits/circuit-for-derivative-works/Verifier.toml
+circuits/circuit-for-derivative-works/test_verifyProof.toml
+circuits/circuit-for-derivative-works/test_wrongProof.toml
 
 lib/foundry-noir-helper/*
 

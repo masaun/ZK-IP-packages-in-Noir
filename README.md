@@ -14,7 +14,7 @@
 - Implementation:
   - The license terms are encoded off-chain.
   - A ZKP is used to prove that the agreement complies with certain conditions (e.g., jurisdiction, duration) without revealing the specific terms.
-  - The proof is linked to the IP Asset's metadata on Story Protocol.
+  - The proof is linked to the `IP Asset's metadata` on **Story Protocol**.
 
 - Benefit: Enables enforcement of licensing conditions while preserving confidentiality.
 
@@ -47,9 +47,9 @@ sh circuit_test
 
 <br>
 
-- Test of the ZK circuit for the `Derivative Works` (`circuit-for-ip-protection-for-derivative-works`):
+- Test of the ZK circuit for the `Derivative Works` (`circuit-for-derivative-works`):
 ```bash
-cd circuits/circuit-for-ip-protection-for-derivative-works
+cd circuits/circuit-for-derivative-works
 sh circuit_test
 ```
 
@@ -58,3 +58,12 @@ sh circuit_test
 ## Smart Contract
 
 - IN PROGRESS
+
+<br>
+
+## References
+
+- Story Protocol:
+
+- Noir:
+
