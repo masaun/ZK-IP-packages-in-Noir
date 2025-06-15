@@ -3,7 +3,7 @@ out
 proofs
 broadcast
 .env
-plonk_vk.sol
+#plonk_vk.sol
 circuits/target/*
 
 circuits/Prover.toml
@@ -18,16 +18,9 @@ circuits/circuit-for-confidential-licensing-agreements/Verifier.toml
 circuits/circuit-for-confidential-licensing-agreements/test_verifyProof.toml
 circuits/circuit-for-confidential-licensing-agreements/test_wrongProof.toml
 
-# Circuit for Selective Disclosure in Derivative Works
-circuits/circuit-for-selective-disclosure-in-derivative-works/target/*
-circuits/circuit-for-selective-disclosure-in-derivative-works/Prover.toml
-circuits/circuit-for-selective-disclosure-in-derivative-works/Verifier.toml
-circuits/circuit-for-selective-disclosure-in-derivative-works/test_verifyProof.toml
-circuits/circuit-for-selective-disclosure-in-derivative-works/test_wrongProof.toml
-
 # Circuit for IP protection for Derivative Works
 circuits/circuit-for-ip-protection-for-derivative-works/target/*
-circuits/circuit-for-ip-protection-for-derivative-works/Prover.toml
+#circuits/circuit-for-ip-protection-for-derivative-works/Prover.toml
 circuits/circuit-for-ip-protection-for-derivative-works/Verifier.toml
 circuits/circuit-for-ip-protection-for-derivative-works/test_verifyProof.toml
 circuits/circuit-for-ip-protection-for-derivative-works/test_wrongProof.toml
