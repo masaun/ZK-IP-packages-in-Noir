@@ -1,5 +1,13 @@
 # ZK IP packages in Noir
 
+## Tech Stack
+
+- `ZK circuit`: Implemented in [`Noir`](https://noir-lang.org/docs/) powered by [Aztec](https://aztec.network/)
+- Smart Contract: Implemented in Solidity (Framework: Foundry) (NOTE: Still in progress to implement the smart contracts)
+- Blockchain: [`Story` Protocol](https://docs.pharosnetwork.xyz/developer-guides/pharos-devnet-onboarding-guide#rpc-endpoint) (NOTE: Still in progress to deploy on this chain)
+
+<br>
+
 ## Overview
 
 - This is the package of `Zero-Knowledge` (`ZK`) circuits in Noir for the privacy-preserving `Intellectual Property (IP)`.
