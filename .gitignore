@@ -13,7 +13,7 @@ circuits/test_wrongProof.toml
 
 # Circuit for Confidential Licensing Agreements
 circuits/circuit-for-confidential-licensing-agreements/target/*
-circuits/circuit-for-confidential-licensing-agreements/Prover.toml
+#circuits/circuit-for-confidential-licensing-agreements/Prover.toml
 circuits/circuit-for-confidential-licensing-agreements/Verifier.toml
 circuits/circuit-for-confidential-licensing-agreements/test_verifyProof.toml
 circuits/circuit-for-confidential-licensing-agreements/test_wrongProof.toml

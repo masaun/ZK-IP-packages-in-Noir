@@ -27,38 +27,38 @@ echo "Generate witness..."
 nargo execute
 
 echo "Proving and generating a zkProof..."
-bb prove -b ./target/confidential_licensing_agreement.json -w ./target/confidential_licensing_agreement.gz -o ./target/proof
-#bb prove -b ./target/confidential_licensing_agreement.json -w ./target/confidential_licensing_agreement.gz -o ./target
-#bb prove -b ./target/confidential_licensing_agreement.json -w ./target/confidential_licensing_agreement.gz -o ./target/confidential_licensing_agreement_proof.bin
+bb prove -b ./target/derivative_work.json -w ./target/derivative_work.gz -o ./target/proof
+#bb prove -b ./target/derivative_work.json -w ./target/derivative_work.gz -o ./target
+#bb prove -b ./target/derivative_work.json -w ./target/derivative_work.gz -o ./target/derivative_work_proof.bin
 
-echo "Copy a zkProof-generated and paste it as a confidential_licensing_agreement_proof.bin"
-cp ./target/proof/proof ./target/proof/confidential_licensing_agreement_proof.bin
+echo "Copy a zkProof-generated and paste it as a derivative_work_proof.bin"
+cp ./target/proof/proof ./target/proof/derivative_work_proof.bin
 
 echo "Generating vkey..."
 # Generate the verification key. You need to pass the `--oracle_hash keccak` flag when generating vkey and proving
 # to instruct bb to use keccak as the hash function, which is more optimal in Solidity
-bb write_vk -b ./target/confidential_licensing_agreement.json -o ./target/vk --oracle_hash keccak
-#bb write_vk -b ./target/confidential_licensing_agreement.json -o ./target --oracle_hash keccak
-#bb write_vk -b ./target/confidential_licensing_agreement.json -o ./target/confidential_licensing_agreement_vk.bin
+bb write_vk -b ./target/derivative_work.json -o ./target/vk --oracle_hash keccak
+#bb write_vk -b ./target/derivative_work.json -o ./target --oracle_hash keccak
+#bb write_vk -b ./target/derivative_work.json -o ./target/derivative_work_vk.bin
 
-echo "Copy a vkey-generated and paste it as a confidential_licensing_agreement_vk.bin"
-cp ./target/vk/vk ./target/vk/confidential_licensing_agreement_vk.bin
+echo "Copy a vkey-generated and paste it as a derivative_work_vk.bin"
+cp ./target/vk/vk ./target/vk/derivative_work_vk.bin
 
 echo "Link vkey to the zkProof"
-bb verify -k ./target/vk/confidential_licensing_agreement_vk.bin -p ./target/proof/confidential_licensing_agreement_proof.bin
+bb verify -k ./target/vk/derivative_work_vk.bin -p ./target/proof/derivative_work_proof.bin
 
 echo "Check a zkProof"
-head -c 32 ./target/proof/confidential_licensing_agreement_proof.bin | od -An -v -t x1 | tr -d $' \n'
+head -c 32 ./target/proof/derivative_work_proof.bin | od -An -v -t x1 | tr -d $' \n'
 
 echo "Generate a Solidity Verifier contract from the vkey..."
-bb write_solidity_verifier -k ./target/vk/confidential_licensing_agreement_vk.bin -o ./target/Verifier.sol
+bb write_solidity_verifier -k ./target/vk/derivative_work_vk.bin -o ./target/Verifier.sol
 #bb write_solidity_verifier -k ./target/vk -o ./target/Verifier.sol
 #bb contract
 
-echo "Copy a Solidity Verifier contract-generated (Verifier.sol) into the ./contracts/circuits/circuit-for-confidential-licensing-agreements/honk-verifier directory"
-cp ./target/Verifier.sol ../../contracts/circuits/circuit-for-confidential-licensing-agreements/honk-verifier
+echo "Copy a Solidity Verifier contract-generated (Verifier.sol) into the ./contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier directory"
+cp ./target/Verifier.sol ../../contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier
 
-echo "Rename the Verifier.sol with the plonk_vk.sol in the ./contracts/circuits/circuit-for-confidential-licensing-agreements/honk-verifier directory"
-mv ../../contracts/circuits/circuit-for-confidential-licensing-agreements/honk-verifier/Verifier.sol ../../contracts/circuits/circuit-for-confidential-licensing-agreements/honk-verifier/plonk_vk.sol
+echo "Rename the Verifier.sol with the plonk_vk.sol in the ./contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier directory"
+mv ../../contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier/Verifier.sol ../../contracts/circuits/circuit-for-ip-protection-for-derivative-works/honk-verifier/plonk_vk.sol
 
 echo "Done"
