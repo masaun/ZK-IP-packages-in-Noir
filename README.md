@@ -9,7 +9,7 @@
 <br>
 
 ### 1. Confidential Licensing Agreements
-- Scenario: Two parties enter into a licensing agreement with sensitive terms.
+- Example scenario: Two parties enter into a licensing agreement with sensitive terms.
 
 - Implementation:
   - The license terms are encoded off-chain.
@@ -22,7 +22,7 @@
 
 ### 2. Selective Disclosure in Derivative Works
 
-- Scenario: A creator wants to allow derivatives of their work under specific conditions.
+- Example scenario: A creator wants to allow derivatives of their work under specific conditions.
 
 - Implementation:
   - The original IP Asset includes metadata specifying permissible derivative conditions.
@@ -36,15 +36,22 @@
 <br>
 
 
-## ZK circuit
+## ZK circuits
 
-- Test of the ZK circuit:
+### Test of the ZK circuits
+- Test of the ZK circuit for the `Confidential License Agreement` (`circuit-for-confidential-licensing-agreements`):
 ```bash
-cd
+cd circuits/circuit-for-confidential-licensing-agreements
+sh circuit_test
 ```
 
+<br>
 
-
+- Test of the ZK circuit for the `Derivative Works` (`circuit-for-ip-protection-for-derivative-works`):
+```bash
+cd circuits/circuit-for-ip-protection-for-derivative-works
+sh circuit_test
+```
 
 <br>
 
