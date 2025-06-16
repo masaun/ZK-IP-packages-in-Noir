@@ -23,8 +23,9 @@
 
 - Specification:
   - The license terms are encoded off-chain.
-  - A ZKP (Zero-Knowledge Proof) is used to prove that the agreement complies with certain conditions (e.g., jurisdiction, duration) **without revealing** the specific terms.
-  - The proof is linked to the [`IP Asset's metadata`](https://docs.story.foundation/concepts/ip-asset/ipa-metadata-standard) on **Story Protocol**.
+  - A ZKP (Zero-Knowledge Proof) can prove the agreement without revealing the sensitive conditions (e.g., jurisdiction, duration). 
+    - In the Story Protocol, it is stored as an [**`off-chain` terms** to be included in `uri` field](https://docs.story.foundation/concepts/programmable-ip-license/pil-terms#off-chain-terms-to-be-included-in-uri-field) of the [`PILTerms` struct (which define an `on-chain` terms)](https://docs.story.foundation/concepts/programmable-ip-license/pil-terms#on-chain-terms).
+    - The ZK circuit for the `Confidential Licensing Agreements` of this ZK IP package will generate a ZKP of the **`off-chain` terms** and it would be used to prove it without revealing the sensitive conditions.
 
 - Benefit: Enables enforcement of licensing conditions while preserving confidentiality.
 
@@ -36,8 +37,8 @@
 
 - Specification:
   - The original IP Asset includes metadata specifying permissible derivative conditions.
-  - A ZKP  (Zero-Knowledge Proof) would verify that a derivative work meets these conditions **without revealing** the full `derivative's content`.
-  - Upon successful verification, the derivative is registered as a new IP Asset linked to the original.
+  - A ZKP  (Zero-Knowledge Proof) would verify that a derivative work meets these conditions **without revealing** the **full** `derivative's content`.
+  - Once the verification for a derivative work is successful, the derivative work is registered as a new IP Asset linked to the original.
 
 - Benefit: Facilitates controlled collaboration and expansion of creative works.
 
