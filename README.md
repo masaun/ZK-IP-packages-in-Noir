@@ -83,17 +83,20 @@ sh circuit_test
 ## References
 
 - Noir:
+  - Doc: https://noir-lang.org/docs/getting_started/quick_start
 
 <br>
 
 - ZK-Kit:
+  - `merkle-trees`：https://github.com/privacy-scaling-explorations/zk-kit.noir/tree/main/packages/merkle-trees
+  - `binary-merkle-root`：https://github.com/privacy-scaling-explorations/zk-kit.noir/tree/main/packages/binary-merkle-root
 
 <br>
 
 - Story Protocol:
   - IPA Metadata Standard: https://docs.story.foundation/concepts/ip-asset/ipa-metadata-standard
-  - On-chain terms (`PILTerms` struct): https://docs.story.foundation/concepts/programmable-ip-license/pil-terms#on-chain-terms
-  - Off-chain terms to be included in `uri` field: https://docs.story.foundation/concepts/programmable-ip-license/pil-terms#off-chain-terms-to-be-included-in-uri-field
+  - On-chain term (`PILTerms` struct): https://docs.story.foundation/concepts/programmable-ip-license/pil-terms#on-chain-terms
+  - **Off-chain terms** to be included in `uri` field: https://docs.story.foundation/concepts/programmable-ip-license/pil-terms#off-chain-terms-to-be-included-in-uri-field
   - Story Protocol - Boilerplate: https://github.com/storyprotocol/story-protocol-boilerplate/tree/main
   
 
