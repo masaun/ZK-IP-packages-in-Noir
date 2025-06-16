@@ -3,8 +3,10 @@
 ## Tech Stack
 
 - `ZK circuit`: Implemented in [`Noir`](https://noir-lang.org/docs/) powered by [Aztec](https://aztec.network/)
-- Smart Contract: Implemented in Solidity (Framework: Foundry) (NOTE: Still in progress to implement the smart contracts)
-- Blockchain: [`Story` Protocol](https://docs.pharosnetwork.xyz/developer-guides/pharos-devnet-onboarding-guide#rpc-endpoint) (NOTE: Still in progress to implement the smart contracts and deploy on this chain)
+- Smart Contract: Implemented in Solidity (Framework: Foundry)
+- Blockchain: [`Story` Protocol](https://docs.pharosnetwork.xyz/developer-guides/pharos-devnet-onboarding-guide#rpc-endpoint) 
+
+(NOTE: Still in progress to implement the smart contracts and deploy on the Story Protocol)
 
 <br>
 
