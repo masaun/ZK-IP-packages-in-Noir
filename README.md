@@ -10,22 +10,23 @@
 
 ## Overview
 
-- This is the package of `Zero-Knowledge` (`ZK`) circuits in Noir for the privacy-preserving `Intellectual Property (IP)`.
+- This is the package of `Zero-Knowledge` (`ZK`) circuits in Noir for the privacy-preserving `Intellectual Property (IP)`, which is expected to work with the [Story Protocol](https://docs.story.foundation/introduction).
 
 - This package is consist of the following two type of ZK circuits:
-  - `Confidential Licensing Agreements`
-  - `Selective Disclosure` in `Derivative Works`
+  - `Confidential Licensing Agreements` ([`circuit-for-confidential-licensing-agreements`](https://github.com/masaun/ZK-IP-packages-in-Noir/tree/main/circuits/circuit-for-confidential-licensing-agreements))
+  - `Selective Disclosure` in `Derivative Works` ([`circuit-for-derivative-works`](https://github.com/masaun/ZK-IP-packages-in-Noir/tree/main/circuits/circuit-for-derivative-works))
 
 <br>
 
 ### 1. Confidential Licensing Agreements
-- Example use case: Two parties enter into a licensing agreement with sensitive terms.
+- Example use case: Two parties can enter into a IP licensing agreement with sensitive terms without disclosing the sentitive terms (conditions).
 
 - Specification:
   - The license terms are encoded off-chain.
   - A ZKP (Zero-Knowledge Proof) can prove the agreement without revealing the sensitive conditions (e.g., jurisdiction, duration). 
     - In the Story Protocol, it is stored as an [**`off-chain` terms** to be included in `uri` field](https://docs.story.foundation/concepts/programmable-ip-license/pil-terms#off-chain-terms-to-be-included-in-uri-field) of the [`PILTerms` struct (which define an `on-chain` terms)](https://docs.story.foundation/concepts/programmable-ip-license/pil-terms#on-chain-terms).
-    - The ZK circuit for the `Confidential Licensing Agreements` of this ZK IP package will generate a ZKP of the **`off-chain` terms** and it would be used to prove it without revealing the sensitive conditions.
+    - The ZK circuit for the `Confidential Licensing Agreements` will generate a ZKP of the **`off-chain` terms** (a `off-chain terms` proof). 
+    - Then, the **`off-chain terms` proof** will be used to prove it **without revealing** the sensitive conditions under the `off-chain` terms.
 
 - Benefit: Enables enforcement of licensing conditions while preserving confidentiality.
 
@@ -33,12 +34,15 @@
 
 ### 2. Selective Disclosure in Derivative Works
 
-- Example use case: A creator wants to allow derivatives of their work under specific conditions.
+- Example use case: 
+  - A creator of the derivative work can get allowance without revealing the **full** `derivative work's content`.
+  - While a creator of the original IP can check the derivatives of their work under specific conditions without checking the **full** `derivative work's content`.
 
 - Specification:
-  - The original IP Asset includes metadata specifying permissible derivative conditions.
-  - A ZKP  (Zero-Knowledge Proof) would verify that a derivative work meets these conditions **without revealing** the **full** `derivative's content`.
-  - Once the verification for a derivative work is successful, the derivative work is registered as a new IP Asset linked to the original.
+  - The original IP Asset includes `metadata`, which is called the [`IPA Metadata Standard`](https://docs.story.foundation/concepts/ip-asset/ipa-metadata-standard) and the permissible derivative conditions are specified.
+
+  - Once a creator of the derivative work will request to generate a ZKP (Zero-Knowledge Proof), the ZK circuit will generate a ZKP of their derivative work (derivative work proof). Then, it would be verified whether their derivative work meets these conditions or not **without revealing** the **full** `derivative work's content`.
+  - Once the verification for a derivative work proof is successful, their derivative work is registered as a new derivative work of the original IP Asset.
 
 - Benefit: Facilitates controlled collaboration and expansion of creative works.
 
